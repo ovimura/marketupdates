@@ -1,5 +1,7 @@
 # marketupdates
 
+Video tutorial reference: https://www.youtube.com/watch?v=nusgoj74a3Y
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
