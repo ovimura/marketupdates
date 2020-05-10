@@ -16,10 +16,19 @@ class Header extends Component {
                             <Link to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to="/Products">Products</Link>
+                            <Link to="/Stocks">Stock</Link>
+                        </li>
+                        <li>
+                            <Link to="/Stocks/appl">APPL Stock</Link>
+                        </li>
+                        <li>
+                            <Link to="/Crypto">Crypto</Link>
+                        </li>
+                        <li>
+                            <Link to="/News">News</Link>
                         </li>
                         <li className="lastmenu">
-                            <Link to="/">Contact</Link>
+                            <Link to="/About">About</Link>
                         </li>
                     </ul>
                 </nav>
