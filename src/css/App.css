@@ -48,6 +48,11 @@ footer {
   background-color: black;
   color: white;
 }
+table, th, td {
+  background-color: turquoise;
+  border: 1px solid black  
+}
+
 /* .container-fluid {
   line-height: 24px;
 } */

@@ -13,8 +13,10 @@ import {useParams} from 'react-router-dom';
 //     )
 // }
 
-const Data = ({ Id }) => {
+const Data = () => {
     let {dataId} = useParams();
+    if(dataId === undefined)
+        dataId = 'AAPL';
     let [quote, setQuote] = React.useState('')
     React.useEffect(() => {
         axios({
@@ -23,7 +25,6 @@ const Data = ({ Id }) => {
             "headers": {
                 "content-type": "application/octet-stream",
                 "x-rapidapi-host": "finnhub-realtime-stock-price.p.rapidapi.com",
-                //"x-rapidapi-key": 'a883fc58e6msh5ddecf03c777f85p16c295jsn47cb261e4668'
                 "x-rapidapi-key":process.env.REACT_APP_RAPIDAPI_KEY
             }, "params": {
                 "symbol": dataId.toUpperCase()
@@ -37,12 +38,12 @@ const Data = ({ Id }) => {
             })
     }, [dataId])
     return (
-        <>
-            <h2>Data View for {dataId.toUpperCase()}</h2>
-            <h3>Nested Client-Only Route</h3>
+        <div>
+            <h2>Data View for {dataId.toString().toUpperCase()}</h2>
             {quote && <div>
                 <table>
                     <caption>Quote as of {new Date(Number(quote.t)*1000).toDateString()} for {dataId.toUpperCase()}</caption>
+                    <thead>
                     <tr>
                         <th>Current</th>
                         <th>High</th>
@@ -51,6 +52,8 @@ const Data = ({ Id }) => {
                         <th>Previous Close</th>
                         <th>Time</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>{quote.c}</td>
                         <td>{quote.h}</td>
@@ -59,15 +62,12 @@ const Data = ({ Id }) => {
                         <td>{quote.pc}</td>
                         <td>{new Date(Number(quote.t)*1000).toLocaleTimeString()}</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>}
-        </>
+            <br/>
+        </div>
     )
 }
-
-
-
-
-
 
 export default Data

@@ -2,10 +2,10 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  useParams
+  //useParams
 } from 'react-router-dom';
 
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './css/App.css';
 import Header from './components/header';
 import Footer from './components/footer';
@@ -18,8 +18,6 @@ import Data from './components/data';
 
 require('dotenv').config();
 
-console.log(process.env.REACT_APP_RAPIDAPI_KEY);
-
 function App() {
   return (
     <Router basename="/">
@@ -30,22 +28,8 @@ function App() {
           <Route path='/Stocks/:dataId?' component={Stocks}/>
           <Route exact path='/Crypto' component={Crypto}/>
           <Route exact path='/About' component={About}/>
-          <Route path='/:dataId' component={Data}/>
+          {/* <Route path='/:dataId' component={Data}/> */}
         <Footer />
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
     </div>
     </Router>
   );
