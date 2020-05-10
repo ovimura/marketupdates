@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Data from '../components/data'
 
 //import { render } from '@testing-library/react'
 // Reference: https://alligator.io/react/axios-react/
@@ -75,11 +76,23 @@ class Symbols extends React.Component {
             >
               {this.state.validationError}
             </div>
+            <Welcome name={this.state.selectedSymbol} />
           </div>
 
         );
     }
 }
 
+function Welcome(props) {
+    if(props.name != "")
+        return (
+            <>
+        <h1>Hello!!!, {props.name}</h1>
+        <Data />
+        </>
+            );
+    else
+        return <h1></h1>;
+}
 
 export default Symbols
