@@ -14,7 +14,7 @@ import News from './components/news';
 import Stocks from './components/stocks';
 import Crypto from './components/crypto';
 import About from './components/about';
-import Data from './components/data';
+//import Data from './components/data';
 
 require('dotenv').config();
 

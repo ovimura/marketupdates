@@ -19,7 +19,7 @@ class Header extends Component {
                             <Link to="/Stocks">Stock</Link>
                         </li>
                         <li>
-                            <Link to="/Stocks/appl">APPL Stock</Link>
+                            <Link to="/Stocks/aapl">APPL Stock</Link>
                         </li>
                         <li>
                             <Link to="/Crypto">Crypto</Link>

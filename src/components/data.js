@@ -2,23 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
 
-// const Data  = ({ dat }) => {
-//     let {dataId} = useParams();
-//     console.log(dataId);
-//     return (
-//         <div>
-//             <h2>Data View for {dataId}</h2>
-//             <h3>Nested Client-Only Route</h3>
-//         </div>
-//     )
-// }
-
 const Data = () => {
     let {dataId} = useParams();
     if(dataId === undefined)
         dataId = 'AAPL';
+
     let [quote, setQuote] = React.useState('')
-    React.useEffect(() => {
+       React.useEffect(() => {
         axios({
             "method": "GET",
             "url": "https://finnhub-realtime-stock-price.p.rapidapi.com/quote",
@@ -31,12 +21,12 @@ const Data = () => {
             }
         })
             .then((response) => {
-                setQuote(response.data)
+               setQuote(response.data)
             })
             .catch((error) => {
                 console.log(error)
             })
-    }, [dataId])
+   }, [dataId])
     return (
         <div>
             <h2>Data View for {dataId.toString().toUpperCase()}</h2>
@@ -69,5 +59,31 @@ const Data = () => {
         </div>
     )
 }
+
+// const GetStockSymbols = () => {
+
+//     let content;
+
+//     const axios = require("axios");
+//     axios({
+//         "method":"GET",
+//         "url":"https://finnhub-realtime-stock-price.p.rapidapi.com/stock/symbol",
+//         "headers":{
+//         "content-type":"application/octet-stream",
+//         "x-rapidapi-host":"finnhub-realtime-stock-price.p.rapidapi.com",
+//         "x-rapidapi-key":process.env.REACT_APP_RAPIDAPI_KEY
+//         },"params":{
+//         "exchange":"US"
+//         }
+//         })
+//         .then((response)=>{
+//             content = response.data;
+//             console.log(content);
+//         })
+//         .catch((error)=>{
+//         console.log(error)
+//         })
+//     return content;
+// }
 
 export default Data
