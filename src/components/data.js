@@ -2,11 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
 
-const Data = () => {
+const Data = ({pa}) => {
     let {dataId} = useParams();
+    console.log(pa);
+    if(pa !== undefined && dataId === undefined)
+        dataId = pa;
     if(dataId === undefined)
         dataId = 'AAPL';
-
     let [quote, setQuote] = React.useState('')
        React.useEffect(() => {
         axios({

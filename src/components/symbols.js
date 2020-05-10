@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Data from '../components/data'
+import { render } from '@testing-library/react'
 
 //import { render } from '@testing-library/react'
 // Reference: https://alligator.io/react/axios-react/
@@ -88,7 +89,7 @@ function Welcome(props) {
         return (
             <>
         <h1>Hello!!!, {props.name}</h1>
-        <Data />
+        <Data pa={props.name}/>
         </>
             );
     else
