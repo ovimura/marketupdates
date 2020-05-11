@@ -23,6 +23,7 @@ const Data = ({pa}) => {
             }
         })
             .then((response) => {
+                console.log(response);
                setQuote(response.data)
             })
             .catch((error) => {

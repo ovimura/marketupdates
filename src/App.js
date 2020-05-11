@@ -15,6 +15,7 @@ import Stocks from './components/stocks';
 import Crypto from './components/crypto';
 import About from './components/about';
 //import Data from './components/data';
+// import Plot from './components/plot';
 
 require('dotenv').config();
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact path='/Crypto' component={Crypto}/>
           <Route exact path='/About' component={About}/>
           {/* <Route path='/:dataId' component={Data}/> */}
+          {/* <Plot/> */}
         <Footer />
     </div>
     </Router>

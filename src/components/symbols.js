@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import Data from '../components/data'
-import { render } from '@testing-library/react'
+import Plot from '../components/plot'
+//import { render } from '@testing-library/react'
 
 //import { render } from '@testing-library/react'
 // Reference: https://alligator.io/react/axios-react/
@@ -85,15 +86,16 @@ class Symbols extends React.Component {
 }
 
 function Welcome(props) {
-    if(props.name != "")
+    if(props.name !== "")
         return (
             <>
         <h1>Hello!!!, {props.name}</h1>
         <Data pa={props.name}/>
+        <Plot dataId={props.name} />
         </>
             );
     else
-        return <h1></h1>;
+        return <br/>;
 }
 
 export default Symbols
