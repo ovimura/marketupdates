@@ -6,7 +6,7 @@ import Plot from '../components/plot'
 
 //import { render } from '@testing-library/react'
 // Reference: https://alligator.io/react/axios-react/
-
+// https://www.carlrippon.com/react-drop-down-data-binding/
 class Symbols extends React.Component {
     state = {
         syms: [],
