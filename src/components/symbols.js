@@ -11,9 +11,11 @@ class Symbols extends React.Component {
     state = {
         syms: [],
         selectedSymbol: "",
+        symbolDescription: "",
         validationError: ""
     }
-
+    dat = null;
+    description = null;
     componentDidMount() {
         axios({
             "method": "GET",
@@ -31,15 +33,20 @@ class Symbols extends React.Component {
         })
             .then(data => {
                 console.log(data);
+                this.dat = data;
+                console.log(this.dat[0].description, this.dat[0].symbol);
+
                 let symbolsFromApi = data.map((symbol, index)=>{
-                    return {key: index, value: symbol.symbol, display: symbol.displaySymbol}
+                  //console.log(symbol.description);
+                    return {key: index, value: symbol.symbol, display: symbol.displaySymbol, description: symbol.description}
                 });
                this.setState({
                    syms: [
                        {key: 0, value: "",
-                       display: "(Select a symbol)"}
+                       display: "(Select a <symbol", description: "description>)"}
                    ].concat(symbolsFromApi)
                    });
+                
             })
             .catch((error) => {
                 console.log(error)
@@ -48,32 +55,35 @@ class Symbols extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{}}>
             <select
               value={this.state.selectedSymbol}
-              onChange={e =>
+              onChange={e => {
                 this.setState({
                     selectedSymbol: e.target.value,
                   validationError:
                     e.target.value === ""
                       ? "You must select a symbol"
                       : ""
-                })
+                });
               }
-            >
+              }>
               {this.state.syms.map((symbol,index) => (
                 <option
                   key={index}
                   value={symbol.value}
                 >
                   {symbol.display}
+                  :
+                  {symbol.description}
                 </option>
               ))}
             </select>
             <div
               style={{
                 color: "red",
-                marginTop: "5px"
+                marginTop: "5px",
+                height: "20px"
               }}
             >
               {this.state.validationError}
@@ -86,15 +96,14 @@ class Symbols extends React.Component {
 }
 
 function Welcome(props) {
-    if(props.name !== "")
+    if(props.name !== "") {
         return (
-            <>
-        <h1>Hello!!!, {props.name}</h1>
-        <Data pa={props.name}/>
-        <Plot dataId={props.name} />
-        </>
+          <div style={{paddingLeft: "30%"}}>
+            <Data pa={props.name}/>
+            <Plot dataId={props.name} />
+          </div>
             );
-    else
+        } else
         return <br/>;
 }
 

@@ -37,43 +37,43 @@ componentDidMount(){
           return response;
         })
         .then(data => {
-            console.log(data);
+            //console.log(data);
             let dataFromApi = [];
-            for(var i=0; i<data.data['c'].length; i++) {
+            for(let i=0; i<data.data['c'].length; i++) {
                 dataFromApi.push({x:i, y:data.data['c'][i]});
             }
-            console.log('data_c: '+dataFromApi);
+            //console.log('data_c: '+dataFromApi);
             this.setState({data_c: dataFromApi});
 
             dataFromApi = [];
-            for(var i=0; i<data.data['h'].length; i++) {
+            for(let i=0; i<data.data['h'].length; i++) {
                 dataFromApi.push({x:i, y:data.data['h'][i]});
             }
-            console.log('data_h: '+dataFromApi);
+            //console.log('data_h: '+dataFromApi);
             this.setState({data_h: dataFromApi});
             dataFromApi = [];
-            for(var i=0; i<data.data['l'].length; i++) {
+            for(let i=0; i<data.data['l'].length; i++) {
                 dataFromApi.push({x:i, y:data.data['l'][i]});
             }
-            console.log('data_l: '+dataFromApi);
+            //console.log('data_l: '+dataFromApi);
             this.setState({data_l: dataFromApi});
             dataFromApi = [];
-            for(var i=0; i<data.data['o'].length; i++) {
+            for(let i=0; i<data.data['o'].length; i++) {
                 dataFromApi.push({x:i, y:data.data['o'][i]});
             }
-            console.log('data_o: '+dataFromApi);
+            //console.log('data_o: '+dataFromApi);
             this.setState({data_o: dataFromApi});
             dataFromApi = [];
-            for(var i=0; i<data.data['t'].length; i++) {
+            for(let i=0; i<data.data['t'].length; i++) {
                 dataFromApi.push({x:i, y:data.data['t'][i]});
             }
-            console.log('data_t: '+dataFromApi);
+            //console.log('data_t: '+dataFromApi);
             this.setState({data_t: dataFromApi});
             dataFromApi = [];
-            for(var i=0; i<data.data['v'].length; i++) {
+            for(let i=0; i<data.data['v'].length; i++) {
                 dataFromApi.push({x:i, y:data.data['v'][i]});
             }
-            console.log('data_v: '+dataFromApi);
+            //console.log('data_v: '+dataFromApi);
             this.setState({data_v: dataFromApi});
         })
         .catch((error)=>{
@@ -103,43 +103,43 @@ componentDidMount(){
               return response;
             })
             .then(data => {
-                console.log(data);
+                //console.log(data);
                 let dataFromApi = [];
-                for(var i=0; i<data.data['c'].length; i++) {
+                for(let i=0; i<data.data['c'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['c'][i]});
                 }
-                console.log('data_c: '+dataFromApi);
+                //console.log('data_c: '+dataFromApi);
                 this.setState({data_c: dataFromApi});
     
                 dataFromApi = [];
-                for(var i=0; i<data.data['h'].length; i++) {
+                for(let i=0; i<data.data['h'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['h'][i]});
                 }
-                console.log('data_h: '+dataFromApi);
+                //console.log('data_h: '+dataFromApi);
                 this.setState({data_h: dataFromApi});
                 dataFromApi = [];
-                for(var i=0; i<data.data['l'].length; i++) {
+                for(let i=0; i<data.data['l'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['l'][i]});
                 }
-                console.log('data_l: '+dataFromApi);
+                //console.log('data_l: '+dataFromApi);
                 this.setState({data_l: dataFromApi});
                 dataFromApi = [];
-                for(var i=0; i<data.data['o'].length; i++) {
+                for(let i=0; i<data.data['o'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['o'][i]});
                 }
-                console.log('data_o: '+dataFromApi);
+                //console.log('data_o: '+dataFromApi);
                 this.setState({data_o: dataFromApi});
                 dataFromApi = [];
-                for(var i=0; i<data.data['t'].length; i++) {
+                for(let i=0; i<data.data['t'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['t'][i]});
                 }
-                console.log('data_t: '+dataFromApi);
+                //console.log('data_t: '+dataFromApi);
                 this.setState({data_t: dataFromApi});
                 dataFromApi = [];
-                for(var i=0; i<data.data['v'].length; i++) {
+                for(let i=0; i<data.data['v'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['v'][i]});
                 }
-                console.log('data_v: '+dataFromApi);
+                //console.log('data_v: '+dataFromApi);
                 this.setState({data_v: dataFromApi});
             })
             .catch((error)=>{
@@ -177,22 +177,22 @@ componentDidMount(){
     //     data.push({x:i, y:this.state.data['c'][i]});
     // }
 
-    for(var i=0; i<this.state.data_c.length; i++) {
+    for(let i=0; i<this.state.data_c.length; i++) {
         data_c.push(this.state.data_c[i]);
     }
-    for(var i=0; i<this.state.data_h.length; i++) {
+    for(let i=0; i<this.state.data_h.length; i++) {
         data_h.push(this.state.data_h[i]);
     }
-    for(var i=0; i<this.state.data_l.length; i++) {
+    for(let i=0; i<this.state.data_l.length; i++) {
         data_l.push(this.state.data_l[i]);
     }
-    for(var i=0; i<this.state.data_o.length; i++) {
+    for(let i=0; i<this.state.data_o.length; i++) {
         data_o.push(this.state.data_o[i]);
     }
-    console.log('c'+data_c);
-    console.log('h'+data_h);
-    console.log('l'+data_l);
-    console.log('o'+data_o);
+    //console.log('c'+data_c);
+    //console.log('h'+data_h);
+    //console.log('l'+data_l);
+    //console.log('o'+data_o);
     console.log('t'+data_t);
     console.log('v'+data_v);
     return (
@@ -200,8 +200,29 @@ componentDidMount(){
         <XYPlot height={300} width={700}>
           <VerticalGridLines />
           <HorizontalGridLines />
-          <XAxis />
-          <YAxis />
+          <XAxis title="Days" style={{
+            line: {stroke: 'black'},
+            ticks: {stroke: '#ADDDE1'},
+            text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
+            title: {fontSize: "12px", fill:"black", fontWeight: 600}
+          }} />
+          <YAxis title="Prices" color="red" style={{
+            line: {stroke: 'black'},
+            ticks: {stroke: '#ADDDE1'},
+            text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
+            title: {fontSize: "12px", fill:"black", fontWeight: 600}
+          }} />
+          {/* <ChartLabel text="Days"
+                className="alt-x-label"
+                includeMargin={false}
+                xPercent={0.525}
+                yPercent={1.18} 
+                style={{text: {color: "red"}}}/>
+          <ChartLabel text="Prices"
+                className="alt-y-label"
+                includeMargin={false}
+                xPercent={-0.05}
+                yPercent={0.58} /> */}
           <LineSeries data={data_c} />
           <LineSeries data={data_h} />
           <LineSeries data={data_l} />

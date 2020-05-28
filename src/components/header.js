@@ -18,9 +18,9 @@ class Header extends Component {
                         <li>
                             <Link to="/Stocks">Stock</Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to="/Stocks/aapl">APPL Stock</Link>
-                        </li>
+                        </li> */}
                         <li>
                             <Link to="/Crypto">Crypto</Link>
                         </li>
