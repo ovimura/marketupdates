@@ -12,7 +12,6 @@ class CryptoSymbols extends React.Component {
     }
     componentDidMount() {
         console.log("CRYPTOCURRENCY");
-
         axios({
             "method":"GET",
             "url":"https://coingecko.p.rapidapi.com/coins/list",
@@ -78,7 +77,6 @@ class CryptoSymbols extends React.Component {
             </div>
             <DisplayDetails name={this.state.selectedSymbol} />
           </div>
-
         );
     }
 }
@@ -86,7 +84,7 @@ class CryptoSymbols extends React.Component {
 function DisplayDetails(props) {
     if(props.name !== "") {
         return (
-          <div style={{paddingLeft: "30%"}}>
+          <div style={{paddingLeft: "10%"}}>
             <CryptoApi pa={props.name}/>
             <CryptoPlot dataId={props.name} />
           </div>
