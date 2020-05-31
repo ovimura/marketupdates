@@ -59,7 +59,7 @@ class CryptoPlot extends Component {
               var date1 = new Date(response.data['market_caps'][response.data['market_caps'].length-1][0]);
               var yr1 = Math.trunc(date1.getFullYear());
               var m1 = months[date1.getMonth()];
-              var d1 = date1.getDate();
+              var d1 = date1.getUTCDate();
               var end1 = (d1+" "+m1+", "+yr1);
               this.market_caps_range.push(end1);
 
@@ -70,11 +70,16 @@ class CryptoPlot extends Component {
               var d2 = date2.getDate();
               var start2 = (d2+" "+m2+", "+yr2);
               this.prices_range.push(start2);
-
+              console.log(response.data['prices'][response.data['prices'].length-1][0]);
+              console.log(response.data['prices'][response.data['prices'].length-1][0].toString().substring(0,10));
+              console.log(parseInt(response.data['prices'][response.data['prices'].length-1][0].toString().substring(0,10),10));
+              var dd = new Date(parseInt(response.data['prices'][response.data['prices'].length-1][0].toString(),10));
+              console.log(dd.getUTCDate());
+              console.log("---");
               var date3 = new Date(response.data['prices'][response.data['prices'].length-1][0]);
               var yr3 = Math.trunc(date3.getFullYear());
-              var m3 = months[date.getMonth()];
-              var d3 = date.getDate();
+              var m3 = months[date3.getMonth()];
+              var d3 = date3.getUTCDate();
               var end3 = (d3+" "+m3+", "+yr3);
               this.prices_range.push(end3);
 
@@ -88,7 +93,7 @@ class CryptoPlot extends Component {
               var date5 = new Date(response.data['total_volumes'][response.data['total_volumes'].length-1][0]);
               var yr5 = Math.trunc(date5.getFullYear());
               var m5 = months[date5.getMonth()];
-              var d5 = date.getDate();
+              var d5 = date5.getUTCDate();
               var end5 = (d5+" "+m5+", "+yr5);
               this.total_volumes.push(end5);
 
@@ -154,6 +159,9 @@ class CryptoPlot extends Component {
                 }
                 this.setState({market_caps: marketCapsFromApi});
                 var pricesFromApi = [];
+                console.log(response.data['prices'][response.data['prices'].length-1][0]);
+                console.log("========");
+  
                 for(let i=0; i<response.data['prices'].length; i++) {
                   //pricesFromApi.push({x:((response.data['prices'][i][0]/1000)|0), y:response.data['prices'][i][1]});
                   pricesFromApi.push({x:i, y:response.data['prices'][i][1]});
