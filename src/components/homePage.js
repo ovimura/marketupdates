@@ -21,7 +21,7 @@ class Homepage extends Component {
         console.log("lllllllllllll>");
         var from = date.getDate() + " "+ this.months[date.getMonth()] + ", " + date.getFullYear()
         var doc = document.getElementById("sp1");
-        if(doc.innerHTML != "")
+        if(doc.innerHTML !== "")
             doc.innerHTML = "";
         doc.appendChild(document.createTextNode(from));
       };
@@ -36,7 +36,7 @@ class Homepage extends Component {
         console.log("aaaaaaaaaaa>");
         var to = date.getDate() + " "+ this.months[date.getMonth()] + ", " + date.getFullYear()
         var doc = document.getElementById("sp2");
-        if(doc.innerHTML != "")
+        if(doc.innerHTML !== "")
             doc.innerHTML = "";
         doc.appendChild(document.createTextNode(to));
       };
@@ -69,7 +69,7 @@ class Homepage extends Component {
                 <p>{Math.round(new Date(this.state.endDate.getFullYear() + "." + (this.state.endDate.getMonth() + 1) + "." + this.state.endDate.getDate()).getTime()/1000)}</p>
                 <span id="sp2"></span>
                 </div>
-              </div>
+            </div>
               </>
         );
     }

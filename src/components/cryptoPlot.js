@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import '../../node_modules/react-vis/dist/style.css';
-import {XYPlot, DiscreteColorLegend, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, LabelSeries} from 'react-vis';
+import {XYPlot, DiscreteColorLegend, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
 const axios = require("axios");
 
 class CryptoPlot extends Component {
@@ -46,41 +46,41 @@ class CryptoPlot extends Component {
               var start = (d+" "+m+", "+yr);
               this.market_caps_range.push(start);
 
-              var date = new Date(response.data['market_caps'][response.data['market_caps'].length-1][0]);
-              var yr = Math.trunc(date.getFullYear());
-              var m = months[date.getMonth()];
-              var d = date.getDate();
-              var end = (d+" "+m+", "+yr);
-              this.market_caps_range.push(end);
+              var date1 = new Date(response.data['market_caps'][response.data['market_caps'].length-1][0]);
+              var yr1 = Math.trunc(date1.getFullYear());
+              var m1 = months[date1.getMonth()];
+              var d1 = date1.getDate();
+              var end1 = (d1+" "+m1+", "+yr1);
+              this.market_caps_range.push(end1);
 
 
-              var date = new Date(response.data['prices'][0][0]);
-              var yr = Math.trunc(date.getFullYear());
-              var m = months[date.getMonth()];
-              var d = date.getDate();
-              var start = (d+" "+m+", "+yr);
-              this.prices_range.push(start);
+              var date2 = new Date(response.data['prices'][0][0]);
+              var yr2 = Math.trunc(date2.getFullYear());
+              var m2 = months[date2.getMonth()];
+              var d2 = date2.getDate();
+              var start2 = (d2+" "+m2+", "+yr2);
+              this.prices_range.push(start2);
 
-              var date = new Date(response.data['prices'][response.data['prices'].length-1][0]);
-              var yr = Math.trunc(date.getFullYear());
-              var m = months[date.getMonth()];
-              var d = date.getDate();
-              var end = (d+" "+m+", "+yr);
-              this.prices_range.push(end);
+              var date3 = new Date(response.data['prices'][response.data['prices'].length-1][0]);
+              var yr3 = Math.trunc(date3.getFullYear());
+              var m3 = months[date.getMonth()];
+              var d3 = date.getDate();
+              var end3 = (d3+" "+m3+", "+yr3);
+              this.prices_range.push(end3);
 
-              var date = new Date(response.data['total_volumes'][0][0]);
-              var yr = Math.trunc(date.getFullYear());
-              var m = months[date.getMonth()];
-              var d = date.getDate();
-              var start = (d+" "+m+", "+yr);
-              this.total_volumes.push(start);
+              var date4 = new Date(response.data['total_volumes'][0][0]);
+              var yr4 = Math.trunc(date4.getFullYear());
+              var m4 = months[date4.getMonth()];
+              var d4 = date4.getDate();
+              var start4 = (d4+" "+m4+", "+yr4);
+              this.total_volumes.push(start4);
 
-              var date = new Date(response.data['total_volumes'][response.data['total_volumes'].length-1][0]);
-              var yr = Math.trunc(date.getFullYear());
-              var m = months[date.getMonth()];
-              var d = date.getDate();
-              var end = (d+" "+m+", "+yr);
-              this.total_volumes.push(end);
+              var date5 = new Date(response.data['total_volumes'][response.data['total_volumes'].length-1][0]);
+              var yr5 = Math.trunc(date5.getFullYear());
+              var m5 = months[date5.getMonth()];
+              var d5 = date.getDate();
+              var end5 = (d5+" "+m5+", "+yr5);
+              this.total_volumes.push(end5);
 
               var marketCapsFromApi = [];
               for(let i=0; i<response.data['market_caps'].length; i++) {
@@ -184,6 +184,7 @@ class CryptoPlot extends Component {
     console.log(total_volumes);
     console.log('total_volumes');
     return (
+      <>
       <div className="Plot">
         <table>
           <tr><td className="chart1">
@@ -237,7 +238,6 @@ class CryptoPlot extends Component {
               width={280}
               items={series2}
             />
-
                 {/* <LineSeries data={market_caps} /> */}
                 <LineSeries data={market_caps} />
                 {/* <LabelSeries data={market_caps}/> */}
@@ -280,6 +280,7 @@ class CryptoPlot extends Component {
             </tr>
             </table>
       </div>
+      </>
     );
   }
 }

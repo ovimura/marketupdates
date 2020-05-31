@@ -84,7 +84,7 @@ class CryptoSymbols extends React.Component {
 function DisplayDetails(props) {
     if(props.name !== "") {
         return (
-          <div style={{paddingLeft: "10%"}}>
+          <div style={{paddingLeft: "5%"}}>
             <CryptoApi pa={props.name}/>
             <CryptoPlot dataId={props.name} />
           </div>
