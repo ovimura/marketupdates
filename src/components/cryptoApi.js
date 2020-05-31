@@ -39,26 +39,26 @@ const CryptoApi = ({pa}) => {
         <div style={{}}>
             {/* <h2>Data View for {dataId.toString().toUpperCase()}</h2> */}
             {coin && <div style={{paddingLeft: "30px"}}>
-                <table>
+                <table className="stocktable">
                     <caption style={{width: "400px", color:"black", fontWeight: 600}} >Quote as of {coin['last_updated']} for {dataId.toUpperCase()}</caption>
                     <thead>
                     <tr>
-                        <th>Current</th>
-                        <th>All Time High</th>
-                        <th>All Time Low</th>
-                        <th>High 24h</th>
-                        <th>Low 24h</th>
-                        <th>Price Change 24h</th>
+                        <th className="stockth">Current</th>
+                        <th className="stockth">All Time High</th>
+                        <th className="stockth">All Time Low</th>
+                        <th className="stockth">High 24h</th>
+                        <th className="stockth">Low 24h</th>
+                        <th className="stockth">Price Change 24h</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>${coin['market_data']['current_price']['usd']}</td>
-                        <td>${coin['market_data']['ath']['usd']}</td>
-                        <td>${coin['market_data']['atl']['usd']}</td>
-                        <td>${coin['market_data']['high_24h']['usd']}</td>
-                        <td>${coin['market_data']['low_24h']['usd']}</td>
-                        <td>${coin['market_data']['price_change_24h_in_currency']['usd']}</td>
+                        <td className="stocktd">${coin['market_data']['current_price']['usd']}</td>
+                        <td className="stocktd">${coin['market_data']['ath']['usd']}</td>
+                        <td className="stocktd">${coin['market_data']['atl']['usd']}</td>
+                        <td className="stocktd">${coin['market_data']['high_24h']['usd']}</td>
+                        <td className="stocktd">${coin['market_data']['low_24h']['usd']}</td>
+                        <td className="stocktd">${coin['market_data']['price_change_24h_in_currency']['usd']}</td>
                     </tr>
                     </tbody>
                 </table>

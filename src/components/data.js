@@ -34,26 +34,26 @@ const Data = ({pa}) => {
         <div style={{}}>
             {/* <h2>Data View for {dataId.toString().toUpperCase()}</h2> */}
             {quote && <div style={{paddingLeft: "30px"}}>
-                <table>
+                <table className="stocktable">
                     <caption>Quote as of {new Date(Number(quote.t)*1000).toDateString()} for {dataId.toUpperCase()}</caption>
                     <thead>
                     <tr>
-                        <th>Current</th>
-                        <th>High</th>
-                        <th>Low</th>
-                        <th>Open</th>
-                        <th>Previous Close</th>
-                        <th>Time</th>
+                        <th className="stockth">Current</th>
+                        <th className="stockth">High</th>
+                        <th className="stockth">Low</th>
+                        <th className="stockth">Open</th>
+                        <th className="stockth">Previous Close</th>
+                        <th className="stockth">Time</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{quote.c}</td>
-                        <td>{quote.h}</td>
-                        <td>{quote.l}</td>
-                        <td>{quote.o}</td>
-                        <td>{quote.pc}</td>
-                        <td>{new Date(Number(quote.t)*1000).toLocaleTimeString()}</td>
+                        <td className="stocktd">{quote.c}</td>
+                        <td className="stocktd">{quote.h}</td>
+                        <td className="stocktd">{quote.l}</td>
+                        <td className="stocktd">{quote.o}</td>
+                        <td className="stocktd">{quote.pc}</td>
+                        <td className="stocktd">{new Date(Number(quote.t)*1000).toLocaleTimeString()}</td>
                     </tr>
                     </tbody>
                 </table>

@@ -48,7 +48,7 @@ footer {
   background-color: black;
   color: white;
 }
-table, th, td {
+.stocktable, .stockth, .stocktd {
   background-color: turquoise;
   border: 1px solid black  
 }
@@ -61,6 +61,35 @@ table, th, td {
   border: 1px solid black  
 }
 
+.cryptoSelection {
+  background-color: white;
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  border: 0px;
+}
+.cryptoSymName {
+  padding-top: 20px;  
+}
+.cryptoDate {
+  background-color: white;
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  border: 0px;
+}
+.toCryptoDate {
+  padding-left: 20px;
+  background-color: white;
+  height: 30px;
+  width: 2px;
+  display: inline-block;
+}
+.fromCryptoDate {
+  background-color: white;
+  height: 10px;
+  width: 10px;
+}
 /* .container-fluid {
   line-height: 24px;
 } */
