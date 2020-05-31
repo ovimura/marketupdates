@@ -57,7 +57,7 @@ class Homepage extends Component {
                     selected={this.state.startDate}
                     onChange={this.handleChangeStart}
                 />
-                <p>{this.state.startDate.getDate() + " " + this.months[this.state.startDate.getMonth()] + ", " + this.state.startDate.getFullYear()}</p>
+                <p>{Math.round(new Date(this.state.startDate.getFullYear() + "." + (this.state.startDate.getMonth()+1) + "." + this.state.startDate.getDate()).getTime() / 1000)}</p>
                 <span id="sp1"></span>
                 </div>
                 <div style={{float: "right", paddingLeft:"10px", width: "100px"}}>
@@ -66,7 +66,7 @@ class Homepage extends Component {
                     selected={this.state.endDate}
                     onChange={this.handleChangeEnd}
                 />
-                <p>{this.state.endDate.getDate() + " " + this.months[this.state.endDate.getMonth()] + ", " + this.state.endDate.getFullYear()}</p>
+                <p>{Math.round(new Date(this.state.endDate.getFullYear() + "." + (this.state.endDate.getMonth() + 1) + "." + this.state.endDate.getDate()).getTime()/1000)}</p>
                 <span id="sp2"></span>
                 </div>
               </div>
