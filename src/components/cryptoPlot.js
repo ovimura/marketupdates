@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import '../../node_modules/react-vis/dist/style.css';
-import {XYPlot, DiscreteColorLegend, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
+import {XYPlot, DiscreteColorLegend, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, LabelSeries} from 'react-vis';
 const axios = require("axios");
 
 class CryptoPlot extends Component {
@@ -12,6 +12,10 @@ class CryptoPlot extends Component {
         total_volumes: {},
         params: []
     }
+
+    market_caps_range = [];
+    prices_range = [];
+    total_volumes = [];
 
     componentDidMount() {
       console.log("mount")
@@ -34,19 +38,66 @@ class CryptoPlot extends Component {
             })
             .then((response)=> {
               console.log(response.data);
+              var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+              var date = new Date(response.data['market_caps'][0][0]);
+              var yr = Math.trunc(date.getFullYear());
+              var m = months[date.getMonth()];
+              var d = date.getDate();
+              var start = (d+" "+m+", "+yr);
+              this.market_caps_range.push(start);
+
+              var date = new Date(response.data['market_caps'][response.data['market_caps'].length-1][0]);
+              var yr = Math.trunc(date.getFullYear());
+              var m = months[date.getMonth()];
+              var d = date.getDate();
+              var end = (d+" "+m+", "+yr);
+              this.market_caps_range.push(end);
+
+
+              var date = new Date(response.data['prices'][0][0]);
+              var yr = Math.trunc(date.getFullYear());
+              var m = months[date.getMonth()];
+              var d = date.getDate();
+              var start = (d+" "+m+", "+yr);
+              this.prices_range.push(start);
+
+              var date = new Date(response.data['prices'][response.data['prices'].length-1][0]);
+              var yr = Math.trunc(date.getFullYear());
+              var m = months[date.getMonth()];
+              var d = date.getDate();
+              var end = (d+" "+m+", "+yr);
+              this.prices_range.push(end);
+
+              var date = new Date(response.data['total_volumes'][0][0]);
+              var yr = Math.trunc(date.getFullYear());
+              var m = months[date.getMonth()];
+              var d = date.getDate();
+              var start = (d+" "+m+", "+yr);
+              this.total_volumes.push(start);
+
+              var date = new Date(response.data['total_volumes'][response.data['total_volumes'].length-1][0]);
+              var yr = Math.trunc(date.getFullYear());
+              var m = months[date.getMonth()];
+              var d = date.getDate();
+              var end = (d+" "+m+", "+yr);
+              this.total_volumes.push(end);
+
               var marketCapsFromApi = [];
               for(let i=0; i<response.data['market_caps'].length; i++) {
-                marketCapsFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
+                // marketCapsFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
+                marketCapsFromApi.push({x:i, y:response.data['market_caps'][i][1]});
               }
               this.setState({market_caps: marketCapsFromApi});
               var pricesFromApi = [];
               for(let i=0; i<response.data['prices'].length; i++) {
-                pricesFromApi.push({x:((response.data['prices'][i][0]/1000)|0), y:response.data['prices'][i][1]});
+                //pricesFromApi.push({x:((response.data['prices'][i][0]/1000)|0), y:response.data['prices'][i][1]});
+                pricesFromApi.push({x:i, y:response.data['prices'][i][1]});
               }
               this.setState({prices: pricesFromApi});
               var totalValumesFromApi = [];
               for(let i=0; i<response.data['total_volumes'].length; i++) {
-                totalValumesFromApi.push({x:((response.data['total_volumes'][i][0]/1000)|0), y:response.data['total_volumes'][i][1]});
+                //totalValumesFromApi.push({x:((response.data['total_volumes'][i][0]/1000)|0), y:response.data['total_volumes'][i][1]});
+                totalValumesFromApi.push({x:i, y:response.data['total_volumes'][i][1]});
               }
               this.setState({total_volumes: totalValumesFromApi});
               console.log(this.state.prices);
@@ -76,25 +127,23 @@ class CryptoPlot extends Component {
                 })
                 .then((response)=>{
                 console.log(response);
-                // let dataFromApi = [];
-                // for(let i=0; i<response.data['market_caps'].length; i++) {
-                //   dataFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
-                // }
-                // this.setState({market_caps: dataFromApi});
 
                 var marketCapsFromApi = [];
                 for(let i=0; i<response.data['market_caps'].length; i++) {
-                  marketCapsFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
+                  //marketCapsFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
+                  marketCapsFromApi.push({x:i, y:response.data['market_caps'][i][1]});
                 }
                 this.setState({market_caps: marketCapsFromApi});
                 var pricesFromApi = [];
                 for(let i=0; i<response.data['prices'].length; i++) {
-                  pricesFromApi.push({x:((response.data['prices'][i][0]/1000)|0), y:response.data['prices'][i][1]});
+                  //pricesFromApi.push({x:((response.data['prices'][i][0]/1000)|0), y:response.data['prices'][i][1]});
+                  pricesFromApi.push({x:i, y:response.data['prices'][i][1]});
                 }
                 this.setState({prices: pricesFromApi});
                 var totalValumesFromApi = [];
                 for(let i=0; i<response.data['total_volumes'].length; i++) {
-                  totalValumesFromApi.push({x:((response.data['total_volumes'][i][0]/1000)|0), y:response.data['total_volumes'][i][1]});
+                  //totalValumesFromApi.push({x:((response.data['total_volumes'][i][0]/1000)|0), y:response.data['total_volumes'][i][1]});
+                  totalValumesFromApi.push({x:i, y:response.data['total_volumes'][i][1]});
                 }
                 this.setState({total_volumes: totalValumesFromApi});
                 console.log(this.state.prices);
@@ -125,9 +174,9 @@ class CryptoPlot extends Component {
       total_volumes.push({x:this.state.total_volumes[i]['x'], y:this.state.total_volumes[i]['y']});
     }
     // const { series } = {series:[{title: "market caps", data:market_caps['x']}, {title: "prices", data:prices['x']}, {title: "total volume", data:total_volumes['x']}]}
-    const { series1 } = {series1:[{title: "prices", data:prices['y']}]}
-    const { series2 } = {series2:[{title: "market caps", data:market_caps['y']}]}
-    const { series3 } = {series3:[{title: "total volumes", data:total_volumes['y']}]}
+    const { series1 } = {series1:[{title: "prices (" + this.prices_range[0] + " to " + this.prices_range[1] + ")", data:prices['y']}]}
+    const { series2 } = {series2:[{title: "market caps (" + this.market_caps_range[0] + " to " + this.market_caps_range[1] + ")", data:market_caps['y']}]}
+    const { series3 } = {series3:[{title: "total volumes (" + this.total_volumes[0] + " to " + this.total_volumes[1] + ")", data:total_volumes['y']}]}
     console.log(market_caps);
     console.log('market_cap');
     console.log(prices);
@@ -138,6 +187,7 @@ class CryptoPlot extends Component {
       <div className="Plot">
         <table>
           <tr><td className="chart1">
+            <span style={{paddingLeft:"220px", fontWeight:900}}>PRICES</span>
             <XYPlot height={300} width={400} margin={{left: 100}}>
               <VerticalGridLines />
               <HorizontalGridLines />
@@ -153,23 +203,11 @@ class CryptoPlot extends Component {
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
                 title: {fontSize: "12px", fill:"black", fontWeight: 600}
               }} />
-              {/* <ChartLabel text="Days"
-                    className="alt-x-label"
-                    includeMargin={false}
-                    xPercent={0.525}
-                    yPercent={1.18} 
-                    style={{text: {color: "red"}}}/>
-              <ChartLabel text="Prices"
-                    className="alt-y-label"
-                    includeMargin={false}
-                    xPercent={-0.05}
-                    yPercent={0.58} /> */}
             <DiscreteColorLegend
               onItemClick={this.clickHandler}
-              width={180}
+              width={280}
               items={series1}
             />
-
                 {/* <LineSeries data={market_caps} /> */}
                 <LineSeries data={prices} />
                 {/* <LineSeries data={total_volumes} /> */}
@@ -178,6 +216,7 @@ class CryptoPlot extends Component {
               <LineSeries data={data_o} /> */}
             </XYPlot>
             </td> <td className="chart2">
+            <span style={{paddingLeft:"200px", fontWeight:900}}>MARKET CAPS</span>
             <XYPlot height={300} width={400} margin={{left: 100}}>
               <VerticalGridLines />
               <HorizontalGridLines />
@@ -193,25 +232,15 @@ class CryptoPlot extends Component {
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
                 title: {fontSize: "12px", fill:"black", fontWeight: 600}
               }} />
-              {/* <ChartLabel text="Days"
-                    className="alt-x-label"
-                    includeMargin={false}
-                    xPercent={0.525}
-                    yPercent={1.18} 
-                    style={{text: {color: "red"}}}/>
-              <ChartLabel text="Prices"
-                    className="alt-y-label"
-                    includeMargin={false}
-                    xPercent={-0.05}
-                    yPercent={0.58} /> */}
             <DiscreteColorLegend
               onItemClick={this.clickHandler}
-              width={180}
+              width={280}
               items={series2}
             />
 
                 {/* <LineSeries data={market_caps} /> */}
                 <LineSeries data={market_caps} />
+                {/* <LabelSeries data={market_caps}/> */}
                 {/* <LineSeries data={total_volumes} /> */}
               {/* <LineSeries data={data_h} />
               <LineSeries data={data_l} />
@@ -219,6 +248,7 @@ class CryptoPlot extends Component {
             </XYPlot>
             </td>
             <td className="chart3">
+            <span style={{paddingLeft:"200px", fontWeight:900}}>TOTAL VOLUMES</span>
             <XYPlot height={300} width={400} margin={{left: 100}}>
               <VerticalGridLines />
               <HorizontalGridLines />
@@ -234,23 +264,11 @@ class CryptoPlot extends Component {
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
                 title: {fontSize: "12px", fill:"black", fontWeight: 600}
               }} />
-              {/* <ChartLabel text="Days"
-                    className="alt-x-label"
-                    includeMargin={false}
-                    xPercent={0.525}
-                    yPercent={1.18} 
-                    style={{text: {color: "red"}}}/>
-              <ChartLabel text="Prices"
-                    className="alt-y-label"
-                    includeMargin={false}
-                    xPercent={-0.05}
-                    yPercent={0.58} /> */}
             <DiscreteColorLegend
               onItemClick={this.clickHandler}
-              width={180}
+              width={320}
               items={series3}
             />
-
                 {/* <LineSeries data={market_caps} /> */}
                 <LineSeries data={total_volumes} />
                 {/* <LineSeries data={total_volumes} /> */}
