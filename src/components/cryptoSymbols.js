@@ -43,6 +43,9 @@ class CryptoSymbols extends React.Component {
     render() {
         return (
             <div style={{}}>
+              {this.props.from}
+              :
+              {this.props.to}
             <select
               value={this.state.selectedSymbol}
               onChange={e => {
@@ -75,7 +78,7 @@ class CryptoSymbols extends React.Component {
             >
               {this.state.validationError}
             </div>
-            <DisplayDetails name={this.state.selectedSymbol} />
+            <DisplayDetails name={this.state.selectedSymbol} from={this.props.from} to={this.props.to}/>
           </div>
         );
     }
@@ -86,7 +89,7 @@ function DisplayDetails(props) {
         return (
           <div style={{paddingLeft: "5%"}}>
             <CryptoApi pa={props.name}/>
-            <CryptoPlot dataId={props.name} />
+            <CryptoPlot dataId={props.name} from={props.from} to={props.to}/>
           </div>
             );
         } else

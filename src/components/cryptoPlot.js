@@ -18,7 +18,17 @@ class CryptoPlot extends Component {
     total_volumes = [];
 
     componentDidMount() {
-      console.log("mount")
+      console.log("mount cryptoPlot");
+      console.log(this.props.from);
+      console.log(this.props.to);
+      var f = 0, t =0;
+      if(this.props.from !== 0 && this.props.to !== 0) {
+        f = this.props.from;
+        t = this.props.to;
+      } else {
+        f = "1392577232";
+        t = "1590824006";
+      }
         let {dataId} = this.props;
         console.log('did mount:)' + dataId);
         console.log("https://coingecko.p.rapidapi.com/coins/"+dataId+"/market_chart/range");
@@ -31,9 +41,9 @@ class CryptoPlot extends Component {
             "x-rapidapi-key":"a883fc58e6msh5ddecf03c777f85p16c295jsn47cb261e4668",
             "useQueryString":true
             },"params":{
-            "from":"1392577232",
+            "from": f.toString(),
             "vs_currency":"USD",
-            "to":"1590824006"
+            "to": t.toString()
             }
             })
             .then((response)=> {
@@ -110,6 +120,15 @@ class CryptoPlot extends Component {
     componentDidUpdate(prevProps){
         let {dataId} = this.props;
         console.log('did mount, update: ' + dataId);
+        var f = 0, t =0;
+        if(this.props.from !== 0 && this.props.to !== 0) {
+          f = this.props.from;
+          t = this.props.to;
+        } else {
+          f = "1392577232";
+          t = "1590824006";
+        }
+
         if (this.props.dataId !== prevProps.dataId) {
             axios({
                 "method":"GET",
@@ -120,9 +139,9 @@ class CryptoPlot extends Component {
                 "x-rapidapi-key":"a883fc58e6msh5ddecf03c777f85p16c295jsn47cb261e4668",
                 "useQueryString":true
                 },"params":{
-                "from":"1390577232",
+                "from":f.toString(),
                 "vs_currency":"USD",
-                "to":"1590824006"
+                "to":t.toString()
                 }
                 })
                 .then((response)=>{
