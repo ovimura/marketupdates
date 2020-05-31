@@ -52,11 +52,14 @@ table, th, td {
   background-color: turquoise;
   border: 1px solid black  
 }
-.chart1, .chart2, .chart3 {
+.chart1, .chart3 {
   background-color: white;
   border: 1px solid black  
 }
-
+.chart2 {
+  background-color: white;
+  border: 1px solid black  
+}
 
 /* .container-fluid {
   line-height: 24px;

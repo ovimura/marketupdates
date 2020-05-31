@@ -197,7 +197,7 @@ class CryptoPlot extends Component {
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
                 title: {fontSize: "12px", fill:"black", fontWeight: 600},
               }} />
-              <YAxis title="Prices" color="red" style={{
+              <YAxis title="Prices ($)" color="red" style={{
                 line: {stroke: 'black'},
                 ticks: {stroke: '#ADDDE1'},
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
@@ -217,7 +217,7 @@ class CryptoPlot extends Component {
             </XYPlot>
             </td> <td className="chart2">
             <span style={{paddingLeft:"200px", fontWeight:900}}>MARKET CAPS</span>
-            <XYPlot height={300} width={400} margin={{left: 100}}>
+            <XYPlot height={300} width={400} margin={{left: 120}}>
               <VerticalGridLines />
               <HorizontalGridLines />
               <XAxis title="Days" style={{
@@ -226,7 +226,7 @@ class CryptoPlot extends Component {
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
                 title: {fontSize: "12px", fill:"black", fontWeight: 600},
               }} />
-              <YAxis title="Prices" color="red" style={{
+              <YAxis title="Prices ($)" color="red" style={{
                 line: {stroke: 'black'},
                 ticks: {stroke: '#ADDDE1'},
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
@@ -258,7 +258,7 @@ class CryptoPlot extends Component {
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
                 title: {fontSize: "12px", fill:"black", fontWeight: 600},
               }} />
-              <YAxis title="Prices" color="red" style={{
+              <YAxis title="Prices ($)" color="red" style={{
                 line: {stroke: 'black'},
                 ticks: {stroke: '#ADDDE1'},
                 text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600, color: '#6b6b76', fontSize: "12px"},
