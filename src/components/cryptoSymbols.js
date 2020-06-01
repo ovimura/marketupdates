@@ -41,9 +41,9 @@ class CryptoSymbols extends React.Component {
     render() {
         return (
             <div style={{}}>
-              {this.props.from}
+              {/* {this.props.from}
               :
-              {this.props.to}
+              {this.props.to} */}
             <select
               value={this.state.selectedSymbol}
               onChange={e => {

@@ -17,20 +17,20 @@ class Cryptocurrency extends Component {
         this.setState({sDate: date})
         var from = Math.round(new Date(date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate()).getTime()/1000)
         this.from = from;
-        var doc = document.getElementById("sp1");
-        if(doc.innerHTML !== "")
-            doc.innerHTML = "";
-        doc.appendChild(document.createTextNode(from));
+        // var doc = document.getElementById("sp1");
+        // if(doc.innerHTML !== "")
+        //     doc.innerHTML = "";
+        // doc.appendChild(document.createTextNode(from));
     }
 
     handleChangeTo = date => {
         this.setState({eDate: date})
         var to = Math.round(new Date(date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate()).getTime()/1000)
         this.to = to;
-        var doc = document.getElementById("sp2");
-        if(doc.innerHTML !== "")
-            doc.innerHTML = "";
-        doc.appendChild(document.createTextNode(to));
+        // var doc = document.getElementById("sp2");
+        // if(doc.innerHTML !== "")
+        //     doc.innerHTML = "";
+        // doc.appendChild(document.createTextNode(to));
     }
 
     render() {
@@ -52,12 +52,12 @@ class Cryptocurrency extends Component {
                                             <th className="fromCryptoDate">
                                                 From: 
                                                 <DatePicker selected={this.state.sDate} onChange={this.handleChangeFrom} />
-                                                <span id="sp1"></span>
+                                                {/* <span id="sp1"></span> */}
                                             </th>
                                             <th className="toCryptoDate">
                                                 To: 
                                                 <DatePicker selected={this.state.eDate} onChange={this.handleChangeTo} />
-                                                <span id="sp2"></span>
+                                                {/* <span id="sp2"></span> */}
                                             </th>
                                         </tr>
                                     </thead>
