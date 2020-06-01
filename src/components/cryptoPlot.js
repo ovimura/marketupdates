@@ -17,9 +17,15 @@ class CryptoPlot extends Component {
     prices_range = [];
     total_volumes = [];
 
+    from = 0;
+    to = 0;
+    updated = false;
+
     componentDidMount() {
       var f = 0, t =0;
-      if(this.props.from !== 0 && this.props.to !== 0) {
+      if(this.props.from !== this.from && this.props.to !== this.to) {
+        this.from = this.props.from;
+        this.to = this.props.to;
         f = this.props.from;
         t = this.props.to;
       } else {
@@ -109,16 +115,19 @@ class CryptoPlot extends Component {
             })
     }
 
-    componentDidUpdate(prevProps){
+    componentDidUpdate(prevProps) {
         var f = 0, t =0;
         if(this.props.from !== 0 && this.props.to !== 0) {
+          this.from = this.props.from;
+          this.to = this.props.to;
           f = this.props.from;
           t = this.props.to;
         } else {
           f = "1392577232";
           t = "1590824006";
         }
-        if (this.props.dataId !== prevProps.dataId) {
+        if ((this.props.dataId !== prevProps.dataId)) {
+          this.updated = false;
             axios({
                 "method":"GET",
                 "url":"https://coingecko.p.rapidapi.com/coins/"+this.props.dataId+"/market_chart/range",
