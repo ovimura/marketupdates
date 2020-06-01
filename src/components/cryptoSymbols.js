@@ -10,7 +10,8 @@ class CryptoSymbols extends React.Component {
         symbolDescription: "",
         validationError: ""
     }
-    componentDidMount() {
+
+  componentDidMount() {
         axios({
             "method":"GET",
             "url":"https://coingecko.p.rapidapi.com/coins/list",
@@ -36,7 +37,7 @@ class CryptoSymbols extends React.Component {
             .catch((error)=>{
               console.log(error)
             });
-        }
+  }
 
     render() {
         return (
