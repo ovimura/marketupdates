@@ -10,8 +10,9 @@ class Cryptocurrency extends Component {
         sDate: new Date(),
         eDate: new Date()
     }
-    from = 0;
-    to = 0;
+    date = new Date();
+    from = Math.round(new Date(this.date.getFullYear() + "." + (this.date.getMonth() + 1) + "." + this.date.getDate()).getTime()/1000);
+    to = Math.round(new Date(this.date.getFullYear() + "." + (this.date.getMonth() + 1) + "." + this.date.getDate()).getTime()/1000)+60000;
     handleChangeFrom = date => {
         this.setState({sDate: date})
         var from = Math.round(new Date(date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate()).getTime()/1000)
@@ -42,27 +43,35 @@ class Cryptocurrency extends Component {
                     Please select a Cryptocurrency from the following drop-down field:
                 </p>
                 <table className="cryptoSelection">
-                    <tr>
-                        <th className="cryptoSelection">
-                            <table className="cryptoDate">
-                                <tr>
-                                    <th className="fromCryptoDate">
-                                        From: 
-                                        <DatePicker selected={this.state.sDate} onChange={this.handleChangeFrom} />
-                                        <span id="sp1"></span>
-                                    </th>
-                                    <th className="toCryptoDate">
-                                        To: 
-                                        <DatePicker selected={this.state.eDate} onChange={this.handleChangeTo} />
-                                        <span id="sp2"></span>
-                                    </th>
-                                </tr>
-                            </table>
-                            <div className="cryptoSymName">
+                    <thead>
+                        <tr>
+                            <th className="cryptoSelection">
+                                <table className="cryptoDate">
+                                    <thead>
+                                        <tr>
+                                            <th className="fromCryptoDate">
+                                                From: 
+                                                <DatePicker selected={this.state.sDate} onChange={this.handleChangeFrom} />
+                                                <span id="sp1"></span>
+                                            </th>
+                                            <th className="toCryptoDate">
+                                                To: 
+                                                <DatePicker selected={this.state.eDate} onChange={this.handleChangeTo} />
+                                                <span id="sp2"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td className="cryptoSymName">
                                 <CryptoSymbols from={this.from} to={this.to}/>
-                            </div>
-                        </th>
-                    </tr>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
 

@@ -11,7 +11,6 @@ class CryptoSymbols extends React.Component {
         validationError: ""
     }
     componentDidMount() {
-        console.log("CRYPTOCURRENCY");
         axios({
             "method":"GET",
             "url":"https://coingecko.p.rapidapi.com/coins/list",
@@ -24,7 +23,6 @@ class CryptoSymbols extends React.Component {
             })
             .then((response)=>{
                 var data = response.data;
-              console.log(data)
                 let symbolsFromApi = data.map((symbol, index)=>{
                     return {key: index, value: symbol.id, id: symbol.name, name: symbol.symbol}
                 });
