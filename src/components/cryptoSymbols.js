@@ -95,8 +95,4 @@ function DisplayDetails(props) {
         return <br/>;
 }
 
-
-
-
-
 export default CryptoSymbols
