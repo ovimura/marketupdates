@@ -96,13 +96,17 @@ footer {
   height: 10px;
   width: 10px;
 }
-
 textarea {
   overflow-y: scroll;
   height: 100px;
   resize: none; /* Remove this if you want the user to resize the textarea */
 }
-
+.quoteTitle {
+  color: "black";
+  font-weight: 600;
+  font-size: 14px;
+  font-family: Arial, Verdana, sans-serif; color: #111111;
+}
 /* .container-fluid {
   line-height: 24px;
 } */

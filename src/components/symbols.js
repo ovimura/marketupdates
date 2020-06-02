@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Data from '../components/data'
 import Plot from '../components/plot'
+import DatePicker from "react-datepicker";
 //import { render } from '@testing-library/react'
 
 //import { render } from '@testing-library/react'
@@ -12,7 +13,9 @@ class Symbols extends React.Component {
         syms: [],
         selectedSymbol: "",
         symbolDescription: "",
-        validationError: ""
+        validationError: "",
+        sDate: new Date(),
+        eDate: new Date()
     }
     dat = null;
     description = null;
@@ -32,9 +35,9 @@ class Symbols extends React.Component {
             return response.data;
         })
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 this.dat = data;
-                console.log(this.dat[0].description, this.dat[0].symbol);
+                // console.log(this.dat[0].description, this.dat[0].symbol);
 
                 let symbolsFromApi = data.map((symbol, index)=>{
                   //console.log(symbol.description);
@@ -52,6 +55,14 @@ class Symbols extends React.Component {
                 console.log(error)
             })
         }
+
+    handleChangeFrom = date => {
+          this.setState({sDate: date})
+    }
+
+    handleChangeTo = date => {
+      this.setState({eDate: date})
+    }
 
     render() {
         return (
@@ -88,6 +99,18 @@ class Symbols extends React.Component {
             >
               {this.state.validationError}
             </div>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <DatePicker selected={this.state.sDate} onChange={this.handleChangeFrom} />
+                  </td>
+                  <td>
+                    <DatePicker selected={this.state.eDate} onChange={this.handleChangeTo} />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <Welcome name={this.state.selectedSymbol} />
           </div>
 
@@ -100,7 +123,7 @@ function Welcome(props) {
         return (
           <div style={{paddingLeft: "30%"}}>
             <Data pa={props.name}/>
-            <Plot dataId={props.name} />
+            <Plot dataId={props.name} from={1572651390} to={1575243390} />
           </div>
             );
         } else

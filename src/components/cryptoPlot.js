@@ -142,8 +142,7 @@ class CryptoPlot extends Component {
                 "to":t.toString()
                 }
                 })
-                .then((response)=>{
-
+                .then((response) => {
                   // var marketCapsFromApi = [];
                   // for(let i=0; i<response.data['market_caps'].length; i++) {
                   //   //marketCapsFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
