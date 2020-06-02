@@ -48,6 +48,12 @@ footer {
   background-color: black;
   color: white;
 }
+.app-footer {
+  position: fixed;
+  bottom:0;
+  width:100%;
+  height:"20px";
+}
 .stocktable, .stockth, .stocktd {
   background-color: turquoise;
   border: 1px solid black  
