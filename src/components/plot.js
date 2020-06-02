@@ -13,9 +13,16 @@ class Plot extends Component {
         data_o: {},
         params: []
     }
-
+from = "";
+to = "";
 componentDidMount() {
     let {from, to} = this.props
+    this.from = from
+    this.to = to
+    console.log('from:');
+    console.log(from);
+    console.log('to');
+    console.log(to);
     axios({
         "method":"GET",
         "url":"https://finnhub-realtime-stock-price.p.rapidapi.com/stock/candle",
@@ -79,7 +86,13 @@ componentDidMount() {
     }
 
     componentDidUpdate(prevProps) {
+        console.log('componentDidUpdate');
         let {dataId} = this.props;
+        let {from, to} = this.props;
+        console.log(from);
+        console.log(prevProps.from);
+        console.log(to);
+        console.log(prevProps.to);;
         if (this.props.dataId !== prevProps.dataId) {
         axios({
             "method":"GET",
@@ -89,17 +102,18 @@ componentDidMount() {
             "x-rapidapi-host":"finnhub-realtime-stock-price.p.rapidapi.com",
             "x-rapidapi-key":"a883fc58e6msh5ddecf03c777f85p16c295jsn47cb261e4668"
             },"params":{
-            "to":"1575243390",
+            "to":to.toString(),
             "symbol":dataId,
-            "from":"1572651390",
+            "from":from.toString(),
             "resolution":"D"
             }
             })
-            .then((response)=>{
-              return response;
-            })
+            // .then((response)=>{
+            //   console.log(response);
+            // })
             .then(data => {
-                //console.log(data);
+                console.log('data in updated');
+                console.log(data);
                 let dataFromApi = [];
                 for(let i=0; i<data.data['c'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['c'][i]});

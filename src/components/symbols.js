@@ -14,7 +14,7 @@ class Symbols extends React.Component {
         selectedSymbol: "",
         symbolDescription: "",
         validationError: "",
-        sDate: new Date(),
+        sDate: new Date(2020, new Date().getMonth()-1, new Date().getDay()),
         eDate: new Date()
     }
     dat = null;
@@ -38,7 +38,6 @@ class Symbols extends React.Component {
                 // console.log(data);
                 this.dat = data;
                 // console.log(this.dat[0].description, this.dat[0].symbol);
-
                 let symbolsFromApi = data.map((symbol, index)=>{
                   //console.log(symbol.description);
                     return {key: index, value: symbol.symbol, display: symbol.displaySymbol, description: symbol.description}
@@ -49,15 +48,15 @@ class Symbols extends React.Component {
                        display: "(Select a <symbol", description: "description>)"}
                    ].concat(symbolsFromApi)
                    });
-                
             })
-            .catch((error) => {
-                console.log(error)
-            })
-        }
+      .catch((error) => {
+        console.log(error);
+      })
+    }
 
     handleChangeFrom = date => {
           this.setState({sDate: date})
+          console.log(Number(this.state.sDate.valueOf().toString().substring(0,10)));
     }
 
     handleChangeTo = date => {
@@ -111,7 +110,7 @@ class Symbols extends React.Component {
                 </tr>
               </tbody>
             </table>
-            <Welcome name={this.state.selectedSymbol} />
+            <Welcome name={this.state.selectedSymbol} from={Number(this.state.sDate.valueOf().toString().substring(0,10))} to={Number(this.state.eDate.valueOf().toString().substring(0,10))} />
           </div>
 
         );
@@ -123,7 +122,7 @@ function Welcome(props) {
         return (
           <div style={{paddingLeft: "30%"}}>
             <Data pa={props.name}/>
-            <Plot dataId={props.name} from={1572651390} to={1575243390} />
+            <Plot dataId={props.name} from={props.from} to={props.to} />
           </div>
             );
         } else
