@@ -47,17 +47,13 @@ class News extends Component {
                     category = arr[0][2];
                     readMore = arr[0][4];
                     date = new Date(arr[0][3]*1000);
-                    console.log(arr[0][3]);
-                    console.log('dt');
                     yr = Math.trunc(date.getUTCFullYear());
                     m = months[date.getMonth()];
-                    d = date.getDate();
+                    d = date.getUTCDate();
                     h = date.getUTCHours();
                     min = date.getUTCMinutes();
                     sec = date.getUTCSeconds();
                     dt = (d+" "+m+", "+yr + " @" + h + ":"+min + ":" + sec);
-                    console.log(dt);
-                    console.log('test date');
                     id = arr[0][7];
                 }
                 this.setState({selectedCategory: category, selectedDt: dt, selectedHL: hl, selectedId: id, selectedImg: imgurl, selectedSrc: src, selectedSummary: summary, selectedUrl: readMore});
@@ -84,17 +80,13 @@ class News extends Component {
             category = this.state.allnews[id][2];
             readMore = this.state.allnews[id][4];
             date = new Date(this.state.allnews[id][3]*1000);
-            console.log(this.state.allnews[id][3]);
-            console.log('dt');
             yr = Math.trunc(date.getUTCFullYear());
             m = months[date.getMonth()];
-            d = date.getDate();
+            d = date.getUTCDate();
             h = date.getUTCHours();
             min = date.getUTCMinutes();
             sec = date.getUTCSeconds();
             dt = (d+" "+m+", "+yr + " @" + h + ":"+min + ":" + sec);
-            console.log(dt);
-            console.log('test date');
         }
         this.setState({selectedCategory: category, selectedDt: dt, selectedHL: hl, selectedId: id, selectedImg: imgurl, selectedSrc: src, selectedSummary: summary, selectedUrl: readMore});
     };
@@ -105,7 +97,7 @@ class News extends Component {
             var date = new Date(e[3]*1000);
             var yr = Math.trunc(date.getUTCFullYear());
             var m = months[date.getMonth()];
-            var d = date.getDate();
+            var d = date.getUTCDate();
             var h = date.getUTCHours();
             var min = date.getUTCMinutes();
             var sec = date.getUTCSeconds();
@@ -133,22 +125,20 @@ class News extends Component {
             category = this.state.selectedCategory;
             readMore = this.state.selectedUrl;
             dt = this.state.selectedDt;
-            console.log(dt);
+            category = category.toUpperCase().substring(0,1) + category.substring(1,category.length);
         }
         return (<>
                     <article> 
                         <figure>  
                             <img src={imgurl} className="coverImg" alt="news" />  
-                            <figcaption>Headline: {hl}</figcaption> 
-                            <p>Category: {category}</p>
-                            <p>Reade More: <a href={readMore} style={{color:"red"}}>here</a></p>
-                            </figure> 
+                            <figcaption>Source: {src} <br></br> Category: {category}</figcaption> 
+                        </figure> 
                             <hgroup>  
                                 <h2>{hl}</h2>  
-                                <h3>{dt}</h3> 
-                                <h4>{src}</h4>
+                                <h4><span style={{fontSize:"14px", float:"right", paddingRight: "10px", width:"100%", textAlign:"right", marginBottom:"2px"}}>{dt}</span></h4>
                             </hgroup> 
                             <p>{summary}</p> 
+                            <span><a href={readMore} style={{color:"red"}}>Read More</a></span>
                     </article>
                 </>)
     }
