@@ -41,43 +41,41 @@ class CryptoSymbols extends React.Component {
 
     render() {
         return (
-            <div style={{}}>
-              {/* {this.props.from}
-              :
-              {this.props.to} */}
-            <select
-              value={this.state.selectedSymbol}
-              onChange={e => {
-                this.setState({
-                    selectedSymbol: e.target.value,
-                  validationError:
-                    e.target.value === ""
-                      ? "You must select a symbol"
-                      : ""
-                });
-              }
-              }>
-              {this.state.syms.map((symbol,index) => (
-                <option
-                  key={index}
-                  value={symbol.value}
-                >
-                    {symbol.value}
-                    :
-                    {symbol.name}
-                </option>
-              ))}
-            </select>
-            <div
-              style={{
-                color: "red",
-                marginTop: "5px",
-                height: "20px"
-              }}
-            >
-              {this.state.validationError}
-            </div>
-            <DisplayDetails name={this.state.selectedSymbol} from={this.props.from} to={this.props.to} />
+            <div>
+              <label htmlFor="crypto">Cryptocurrency:</label>
+                  <select id="crypto" name="crypto" className="selectCrypto"
+                    value={this.state.selectedSymbol}
+                    onChange={e => {
+                      this.setState({
+                          selectedSymbol: e.target.value,
+                        validationError:
+                          e.target.value === ""
+                            ? "You must select a symbol"
+                            : ""
+                      });
+                    }
+                    }>
+                    {this.state.syms.map((symbol,index) => (
+                      <option
+                        key={index}
+                        value={symbol.value}
+                      >
+                          {symbol.value}
+                          :
+                          {symbol.name}
+                      </option>
+                    ))}
+                  </select>
+                  <div
+                    style={{
+                      color: "red",
+                      marginTop: "5px",
+                      height: "20px"
+                    }}
+                  >
+                    {this.state.validationError}
+                  </div>
+                  <DisplayDetails name={this.state.selectedSymbol} from={this.props.from} to={this.props.to} />
           </div>
         );
     }

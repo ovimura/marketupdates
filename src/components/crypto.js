@@ -42,37 +42,24 @@ class Cryptocurrency extends Component {
                 <p>
                     Please select a Cryptocurrency from the following drop-down field:
                 </p>
-                <table className="cryptoSelection">
-                    <thead>
-                        <tr>
-                            <th className="cryptoSelection">
-                                <table className="cryptoDate">
-                                    <thead>
-                                        <tr>
-                                            <th className="fromCryptoDate">
-                                                From: 
-                                                <DatePicker selected={this.state.sDate} onChange={this.handleChangeFrom} />
-                                                {/* <span id="sp1"></span> */}
-                                            </th>
-                                            <th className="toCryptoDate">
-                                                To: 
-                                                <DatePicker selected={this.state.eDate} onChange={this.handleChangeTo} />
-                                                {/* <span id="sp2"></span> */}
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </th>
-                        </tr>
-                    </thead>
+                <table>
                     <tbody>
-                        <tr>
-                            <td className="cryptoSymName">
-                                <CryptoSymbols from={this.from} to={this.to}/>
+                        <tr style={{width:"50px"}}>
+                            <td className="cryptoAlign">
+                                <label htmlFor="start">From:</label>
+                                <DatePicker id="start" name="start" className="cryptoDateInput" selected={this.state.sDate} onChange={this.handleChangeFrom} />
+                            </td>
+                            <td className="cryptoAlign">
+                                <label htmlFor="end">To:</label>
+                                <DatePicker id="end" name="end" className="cryptoDateInput" selected={this.state.eDate} onChange={this.handleChangeTo} />
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <div style={{width:"50px"}}>                       
+                    <CryptoSymbols from={this.from} to={this.to}/>
+                </div>
+
             </div>
 
             </>
