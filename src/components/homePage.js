@@ -23,11 +23,11 @@ class Homepage extends Component {
         // console.log(this.months[date.getMonth()]);
         // console.log(date.getDate());
         // console.log("lllllllllllll>");
-        var from = date.getDate() + " "+ this.months[date.getMonth()] + ", " + date.getFullYear()
-        var doc = document.getElementById("sp1");
-        if(doc.innerHTML !== "")
-            doc.innerHTML = "";
-        doc.appendChild(document.createTextNode(from));
+        // var from = date.getDate() + " "+ this.months[date.getMonth()] + ", " + date.getFullYear()
+        // var doc = document.getElementById("sp1");
+        // if(doc.innerHTML !== "")
+        //     doc.innerHTML = "";
+        // doc.appendChild(document.createTextNode(from));
       };
 
       handleChangeEnd = date => {
@@ -98,115 +98,118 @@ class Homepage extends Component {
                 
                 </p>
             </div>
-            <div style={{width: "300px"}}>
-                <div style={{float: "left", paddingBottom:"20px", width: "100px"}}>
-                    Date: 
-                    <DatePicker selected={this.state.startDate} onChange={this.handleChangeStart} />
-                {/* <p>{Math.round(new Date(this.state.startDate.getFullYear() + "." + (this.state.startDate.getMonth()+1) + "." + this.state.startDate.getDate()).getTime() / 1000)}</p>
-                <span id="sp1">{this.state.startDate.getFullYear()}-{this.state.startDate.getMonth()}-{this.state.startDate.getDay()}</span> */}
-                </div>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="currencyAlign">
+                                <label htmlFor="dtPicker">Date:</label>
+                                <DatePicker className="dateInput" id="dtPicker" name="dtPicker" selected={this.state.startDate} onChange={this.handleChangeStart} />
+                  </td>
+                  <td className="currencyAlign">
+                                  <label htmlFor="3fromCurrency">From:</label>
+                                  <select className="select" id="3fromCurrency" name="3fromCurrency" value={this.state.selectedSrc} onChange={e => {
+                                    // console.log(this.state.selectedSrc);
+                                      this.setState({
+                                          selectedSrc: e.target.value,
+                                        validationError:
+                                          e.target.value === ""
+                                            ? "You must select a symbol"
+                                            : ""
+                                      });
+                                  }}>
+                                    {this.state.quotes.map((val,index) => (<option key={index} value={val.key}>
+                                                                          {val.key}
+                                                                          :
+                                                                          {val.value}
+                                                                        </option>))}
+                                  </select>
+                                  <div style={{ color: "red", marginTop: "5px", height: "20px" }}>
+                                    {this.state.validationError}
+                                  </div>
+                  </td>
+                  <td className="currencyAlign">
+                                  <label htmlFor="toCurrency">To:</label>
+                                  <select className="select" id="toCurrency" name="toCurrency" value={this.state.selectedDst} onChange={(e) => {
+                                      this.setState({
+                                          selectedDst: e.target.value,
+                                          validationError:
+                                          e.target.value === ""
+                                            ? "You must select a symbol"
+                                            : ""
+                                      });
+                                  }}>
+                                    {this.state.quotes.map((val,index) => (<option key={index} value={val.key}>
+                                                                          {val.key}
+                                                                          :
+                                                                          {val.value}
+                                                                        </option>))}
+                                  </select>
+                                  <div style={{ color: "red", marginTop: "5px", height: "20px" }}>
+                                    {this.state.validationError}
+                                  </div>
+                  </td>
+                  <td className="currencyAlign">
+                            <label htmlFor="qty">Quantity:</label>              
+                            <input type="number" id="qty" name="qty" min="0" className="input"></input>
+                  </td>
+                  <td className="currencyAlign">
+                            <button type="button" onClick={e => {
+                              // console.log(this.state.selectedSrc);
+                              // console.log(this.state.selectedDst);
+                              // console.log(document.getElementById("qty").value);
+                              var dt = this.state.startDate.getFullYear().toString() + "-" + this.state.startDate.getMonth().toString() + "-" + this.state.startDate.getDay().toString();
+                              axios({
+                                "method":"GET",
+                                "url":"https://currency-converter5.p.rapidapi.com/currency/historical/"+dt,
+                                "headers":{
+                                "content-type":"application/octet-stream",
+                                "x-rapidapi-host":"currency-converter5.p.rapidapi.com",
+                                "x-rapidapi-key":"a883fc58e6msh5ddecf03c777f85p16c295jsn47cb261e4668",
+                                "useQueryString":true
+                                },"params":{
+                                "format":"json",
+                                "from":this.state.selectedSrc,
+                                "to":this.state.selectedDst,
+                                "amount": document.getElementById("qty").value,
+                                }
+                                })
+                                .then((response)=>{
+                                  // console.log(response);
+                                  // console.log("===");
+                                  // console.log(response.data.rates[this.state.selectedDst]['rate']);
+                                  var el = document.getElementById("result");
+                                  var tbl = document.createElement("table");
+                                  var tb = document.createElement("tbody");
+                                  var tr = document.createElement("tr");
+                                  var td = document.createElement("td");
+                                  var code = document.createTextNode("Currency Code: " + this.state.selectedDst);
+                                  td.appendChild(code);
+                                  tr.appendChild(td);
+                                  tb.appendChild(tr);
+                                  tbl.appendChild(tb);
+                                  var rate = document.createTextNode("Rate: "+response.data.rates[this.state.selectedDst]['rate']);
+                                  var tr1 = document.createElement("tr");
+                                  var td1 = document.createElement("td");
+                                  td1.appendChild(rate);
+                                  tr1.appendChild(td1);
+                                  tbl.appendChild(tr1);
+                                  var rate_for_amount = document.createTextNode("Rate for Amount: " + response.data.rates[this.state.selectedDst]['rate_for_amount']);
+                                  var tr2 = document.createElement("tr");
+                                  var td2 = document.createElement("td");
+                                  td2.appendChild(rate_for_amount);
+                                  tr2.appendChild(td2);
+                                  tbl.appendChild(tr2);
+                                  el.appendChild(tbl);
+                                })
+                                .catch((error)=>{
+                                  console.log(error)
+                                })
 
-                <div>
-                  <br></br>
-                      <select value={this.state.selectedSrc} onChange={e => {
-                        // console.log(this.state.selectedSrc);
-                          this.setState({
-                              selectedSrc: e.target.value,
-                            validationError:
-                              e.target.value === ""
-                                ? "You must select a symbol"
-                                : ""
-                          });
-                      }}>
-                        {this.state.quotes.map((val,index) => (<option key={index} value={val.key}>
-                                                              {val.key}
-                                                              :
-                                                              {val.value}
-                                                            </option>))}
-                      </select>
-                      <div style={{ color: "red", marginTop: "5px", height: "20px" }}>
-                        {this.state.validationError}
-                      </div>
-                </div>
-                <div>
-                      <select value={this.state.selectedDst} onChange={(e) => {
-                          this.setState({
-                              selectedDst: e.target.value,
-                              validationError:
-                              e.target.value === ""
-                                ? "You must select a symbol"
-                                : ""
-                          });
-                      }}>
-                        {this.state.quotes.map((val,index) => (<option key={index} value={val.key}>
-                                                              {val.key}
-                                                              :
-                                                              {val.value}
-                                                            </option>))}
-                      </select>
-                      <div style={{ color: "red", marginTop: "5px", height: "20px" }}>
-                        {this.state.validationError}
-                      </div>
-                </div>
-                {/* <label for="qty">Quantity:</label> */}
-                <input type="number" id="qty" name="qty" min="0"  style={{marginBottom: "20px"}}></input>
-                <button onClick={e => {
-                  // console.log(this.state.selectedSrc);
-                  // console.log(this.state.selectedDst);
-                  // console.log(document.getElementById("qty").value);
-                  var dt = this.state.startDate.getFullYear().toString() + "-" + this.state.startDate.getMonth().toString() + "-" + this.state.startDate.getDay().toString();
-                  axios({
-                    "method":"GET",
-                    "url":"https://currency-converter5.p.rapidapi.com/currency/historical/"+dt,
-                    "headers":{
-                    "content-type":"application/octet-stream",
-                    "x-rapidapi-host":"currency-converter5.p.rapidapi.com",
-                    "x-rapidapi-key":"a883fc58e6msh5ddecf03c777f85p16c295jsn47cb261e4668",
-                    "useQueryString":true
-                    },"params":{
-                    "format":"json",
-                    "from":this.state.selectedSrc,
-                    "to":this.state.selectedDst,
-                    "amount": document.getElementById("qty").value,
-                    }
-                    })
-                    .then((response)=>{
-                      // console.log(response);
-                      // console.log("===");
-                      // console.log(response.data.rates[this.state.selectedDst]['rate']);
-                      var el = document.getElementById("result");
-                      var tbl = document.createElement("table");
-                      var tb = document.createElement("tbody");
-                      var tr = document.createElement("tr");
-                      var td = document.createElement("td");
-                      var code = document.createTextNode("Currency Code: " + this.state.selectedDst);
-                      td.appendChild(code);
-                      tr.appendChild(td);
-                      tb.appendChild(tr);
-                      tbl.appendChild(tb);
-                      var rate = document.createTextNode("Rate: "+response.data.rates[this.state.selectedDst]['rate']);
-                      var tr1 = document.createElement("tr");
-                      var td1 = document.createElement("td");
-                      td1.appendChild(rate);
-                      tr1.appendChild(td1);
-                      tbl.appendChild(tr1);
-                      var rate_for_amount = document.createTextNode("Rate for Amount: " + response.data.rates[this.state.selectedDst]['rate_for_amount']);
-                      var tr2 = document.createElement("tr");
-                      var td2 = document.createElement("td");
-                      td2.appendChild(rate_for_amount);
-                      tr2.appendChild(td2);
-                      tbl.appendChild(tr2);
-                      el.appendChild(tbl);
-                    })
-                    .catch((error)=>{
-                      console.log(error)
-                    })
-
-                }} >Convert</button>
-                <div className="convertResult" id="result">
-
-                </div>
-            </div>
+                            }} className="btn btn-success">Convert</button>
+                  </td>
+                  </tr></tbody>
+                </table>
+                <div className="convertResult" id="result"></div>
           </div>
         );
     }
