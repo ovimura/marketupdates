@@ -66,46 +66,51 @@ class Symbols extends React.Component {
     render() {
         return (
           <div>
-            <select
-              value={this.state.selectedSymbol}
-              onChange={e => {
-                this.setState({
-                    selectedSymbol: e.target.value,
-                  validationError:
-                    e.target.value === ""
-                      ? "You must select a symbol"
-                      : ""
-                });
-              }
-              }>
-              {this.state.syms.map((symbol,index) => (
-                <option
-                  key={index}
-                  value={symbol.value}
-                >
-                  {symbol.display}
-                  :
-                  {symbol.description}
-                </option>
-              ))}
-            </select>
-            <div
-              style={{
-                color: "red",
-                marginTop: "5px",
-                height: "20px"
-              }}
-            >
-              {this.state.validationError}
-            </div>
             <table>
               <tbody>
                 <tr>
-                  <td>
-                    <DatePicker selected={this.state.sDate} onChange={this.handleChangeFrom} />
+                  <td className="stockAlign">
+                    <label htmlFor="from">From:</label>
+                    <DatePicker className="dateInput" id="from" name="from" selected={this.state.sDate} onChange={this.handleChangeFrom} />
                   </td>
-                  <td>
-                    <DatePicker selected={this.state.eDate} onChange={this.handleChangeTo} />
+                  <td className="stockAlign">
+                  <label htmlFor="to">To:</label>
+                    <DatePicker id="to" name="to" className="dateInput" selected={this.state.eDate} onChange={this.handleChangeTo} />
+                  </td>
+                  <td className="stockAlign">
+                          <label htmlFor="stock">Stock:</label>
+                          <select className="selectStock" id="stock" name="stock"
+                      value={this.state.selectedSymbol}
+                      onChange={e => {
+                        this.setState({
+                            selectedSymbol: e.target.value,
+                          validationError:
+                            e.target.value === ""
+                              ? "You must select a symbol"
+                              : ""
+                        });
+                      }
+                      }>
+                      {this.state.syms.map((symbol,index) => (
+                        <option
+                          key={index}
+                          value={symbol.value}
+                        >
+                          {symbol.display}
+                          :
+                          {symbol.description}
+                        </option>
+                      ))}
+                    </select>
+                    <div
+                      style={{
+                        color: "red",
+                        marginTop: "5px",
+                        height: "20px"
+                      }}
+                    >
+                      {this.state.validationError}
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -120,7 +125,7 @@ class Symbols extends React.Component {
 function Welcome(props) {
     if(props.name !== "") {
         return (
-          <div style={{paddingLeft: "30%"}}>
+          <div style={{paddingLeft: "0px"}}>
             <Data pa={props.name}/>
             <Plot dataId={props.name} from={props.from} to={props.to} />
           </div>

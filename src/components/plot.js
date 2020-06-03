@@ -192,7 +192,7 @@ componentDidMount() {
     const { series3 } = {series3:[{title: "low price", data:data_l, color: "blue"}]}
     const { series4 } = {series4:[{title: "open price", data:data_o, color: "green"}]}
     return (
-      <div className="Plot">
+      <div>
         <XYPlot height={300} width={700}>
           <VerticalGridLines />
           <HorizontalGridLines />

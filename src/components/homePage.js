@@ -13,31 +13,21 @@ class Homepage extends Component {
         endDate: new Date(),
         selectedSrc: "",
         selectedDst: "",
+        validationError: "",
       };
+      
       months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
       handleChangeStart = date => {
         this.setState({
           startDate: date
         });
-        // console.log(date.getFullYear());
-        // console.log(this.months[date.getMonth()]);
-        // console.log(date.getDate());
-        // console.log("lllllllllllll>");
-        // var from = date.getDate() + " "+ this.months[date.getMonth()] + ", " + date.getFullYear()
-        // var doc = document.getElementById("sp1");
-        // if(doc.innerHTML !== "")
-        //     doc.innerHTML = "";
-        // doc.appendChild(document.createTextNode(from));
       };
 
       handleChangeEnd = date => {
         this.setState({
           endDate: date
         });
-        // console.log(date.getFullYear());
-        // console.log(this.months[date.getMonth()]);
-        // console.log(date.getDate());
-        // console.log("aaaaaaaaaaa>");
         var to = date.getDate() + " "+ this.months[date.getMonth()] + ", " + date.getFullYear()
         var doc = document.getElementById("sp2");
         if(doc.innerHTML !== "")
@@ -106,8 +96,8 @@ class Homepage extends Component {
                                 <DatePicker className="dateInput" id="dtPicker" name="dtPicker" selected={this.state.startDate} onChange={this.handleChangeStart} />
                   </td>
                   <td className="currencyAlign">
-                                  <label htmlFor="3fromCurrency">From:</label>
-                                  <select className="select" id="3fromCurrency" name="3fromCurrency" value={this.state.selectedSrc} onChange={e => {
+                                  <label htmlFor="fromCurrency">From:</label>
+                                  <select className="select" id="fromCurrency" name="fromCurrency" value={this.state.selectedSrc} onChange={e => {
                                     // console.log(this.state.selectedSrc);
                                       this.setState({
                                           selectedSrc: e.target.value,
@@ -154,9 +144,6 @@ class Homepage extends Component {
                   </td>
                   <td className="currencyAlign">
                             <button type="button" onClick={e => {
-                              // console.log(this.state.selectedSrc);
-                              // console.log(this.state.selectedDst);
-                              // console.log(document.getElementById("qty").value);
                               var dt = this.state.startDate.getFullYear().toString() + "-" + this.state.startDate.getMonth().toString() + "-" + this.state.startDate.getDay().toString();
                               axios({
                                 "method":"GET",
@@ -175,8 +162,6 @@ class Homepage extends Component {
                                 })
                                 .then((response)=>{
                                   // console.log(response);
-                                  // console.log("===");
-                                  // console.log(response.data.rates[this.state.selectedDst]['rate']);
                                   var el = document.getElementById("result");
                                   var tbl = document.createElement("table");
                                   var tb = document.createElement("tbody");
@@ -199,6 +184,9 @@ class Homepage extends Component {
                                   td2.appendChild(rate_for_amount);
                                   tr2.appendChild(td2);
                                   tbl.appendChild(tr2);
+                                  if(this.state.validationError !== "")
+                                    console.log('error!!!');
+
                                   el.appendChild(tbl);
                                 })
                                 .catch((error)=>{
