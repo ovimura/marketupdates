@@ -89,6 +89,13 @@ class News extends Component {
             dt = (d+" "+m+", "+yr + " @" + h + ":"+min + ":" + sec);
         }
         this.setState({selectedCategory: category, selectedDt: dt, selectedHL: hl, selectedId: id, selectedImg: imgurl, selectedSrc: src, selectedSummary: summary, selectedUrl: readMore});
+        var trs = document.getElementsByClassName("trnewss");
+        for(var i=0; i<trs.length; i++) {
+            if(trs[i].className.includes("selected")) {
+                trs[i].className = trs[i].className.replace("selected", "");
+            }
+        }
+        trs[id].className += " selected";
     };
 
     renderNews() {
@@ -103,9 +110,9 @@ class News extends Component {
             var sec = date.getUTCSeconds();
             var dt = (d+" "+m+", "+yr + "\n" + h + ":"+min + ":" + sec);
             if(idx%2===0)
-                return (<tr key={idx} className="trnews" id={idx.toString(10)} onClick={() => this.handleClick(idx)}><td className="tdnews source">{e[0]}</td><td className="tdnews">{e[1]}</td><td className="tdnews dt">{dt}</td></tr>)
+                return (<tr key={idx} className="trnewss" id={idx.toString(10)} onClick={() => this.handleClick(idx)}><td className="tdnews source">{e[0]}</td><td className="tdnews">{e[1]}</td><td className="tdnewss dt">{dt}</td></tr>)
             else
-        return (<tr key={idx} className="trnews even" id={idx.toString(10)} onClick={() => this.handleClick(idx)}><td className="tdnews source">{e[0]}</td><td className="tdnews">{e[1]}</td><td className="tdnews dt">{dt}</td></tr>)
+        return (<tr key={idx} className="trnewss even" id={idx.toString(10)} onClick={() => this.handleClick(idx)}><td className="tdnews source">{e[0]}</td><td className="tdnews">{e[1]}</td><td className="tdnewss dt">{dt}</td></tr>)
         })
     }
 

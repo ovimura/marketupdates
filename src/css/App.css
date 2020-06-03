@@ -107,6 +107,10 @@ textarea {
   font-size: 14px;
   font-family: Arial, Verdana, sans-serif; color: #111111;
 }
+.convertResult {
+  margin-top: 20px;
+  background-color: lime;
+}
 /* .container-fluid {
   line-height: 24px;
 } */

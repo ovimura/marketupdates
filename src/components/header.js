@@ -8,7 +8,7 @@ class Header extends Component {
         return (
             <header>
                 <div className="logo">
-                    LOGO
+                    <img src="./arrow1.png" alt="Market Hub" style={{width:"100px", height:"60px"}} />
                 </div>
                 <nav>
                     <ul>

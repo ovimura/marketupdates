@@ -65,7 +65,7 @@ class Symbols extends React.Component {
 
     render() {
         return (
-            <div style={{}}>
+          <div>
             <select
               value={this.state.selectedSymbol}
               onChange={e => {

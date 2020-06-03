@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
-
 // import {DatePicker} from 'react';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+const axios = require("axios");
+
 class Homepage extends Component {
     state = {
+        quotes: [],
         startDate: new Date(),
-        endDate: new Date()
+        endDate: new Date(),
+        selectedSrc: "",
+        selectedDst: "",
       };
       months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       handleChangeStart = date => {
         this.setState({
           startDate: date
         });
-        console.log(date.getFullYear());
-        console.log(this.months[date.getMonth()]);
-        console.log(date.getDate());
-        console.log("lllllllllllll>");
+        // console.log(date.getFullYear());
+        // console.log(this.months[date.getMonth()]);
+        // console.log(date.getDate());
+        // console.log("lllllllllllll>");
         var from = date.getDate() + " "+ this.months[date.getMonth()] + ", " + date.getFullYear()
         var doc = document.getElementById("sp1");
         if(doc.innerHTML !== "")
@@ -30,10 +34,10 @@ class Homepage extends Component {
         this.setState({
           endDate: date
         });
-        console.log(date.getFullYear());
-        console.log(this.months[date.getMonth()]);
-        console.log(date.getDate());
-        console.log("aaaaaaaaaaa>");
+        // console.log(date.getFullYear());
+        // console.log(this.months[date.getMonth()]);
+        // console.log(date.getDate());
+        // console.log("aaaaaaaaaaa>");
         var to = date.getDate() + " "+ this.months[date.getMonth()] + ", " + date.getFullYear()
         var doc = document.getElementById("sp2");
         if(doc.innerHTML !== "")
@@ -41,36 +45,169 @@ class Homepage extends Component {
         doc.appendChild(document.createTextNode(to));
       };
 
+      componentDidMount() {
+        axios({
+          "method":"GET",
+          "url":"https://currency-converter5.p.rapidapi.com/currency/list",
+          "headers":{
+          "content-type":"application/octet-stream",
+          "x-rapidapi-host":"currency-converter5.p.rapidapi.com",
+          "x-rapidapi-key":"a883fc58e6msh5ddecf03c777f85p16c295jsn47cb261e4668",
+          "useQueryString":true
+          },"params":{
+          "format":"json"
+          }
+            })
+            .then((response)=>{
+                // console.log(response.data);
+                var data = response.data.currencies;
+                var q = [];
+                // console.log(data);
+                for(let t in data) {
+                  q.push(t);
+                }
+                var m = new Map();
+                q.forEach(e => {
+                  m.set(e, data[e]);
+                })
+                let qs = [];
+                m.forEach((v, k)=>{
+                  // console.log(k, v);
+                    qs.push({key: k, value: v});
+                });
+                // console.log(qs);
+               this.setState({
+                   quotes: [
+                       {key: "(Select a currency <code", value: "name>)"}
+                   ].concat(qs)
+                   });
+            })
+            .catch((error)=>{
+              console.log(error)
+            })
+      }
+
+
+
     render() {
         return (
-            <>
-            <div  className="container-fluid">
-                <h1>Home Page Content</h1>
+            <div className="container-fluid">
+            <div>
+                <h1>Currency Converter</h1>
                 <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                
                 </p>
             </div>
             <div style={{width: "300px"}}>
-                <div style={{float: "left", paddingLeft:"10px", width: "100px"}}>
-                    From: 
-                    <DatePicker
-                    selected={this.state.startDate}
-                    onChange={this.handleChangeStart}
-                />
-                <p>{Math.round(new Date(this.state.startDate.getFullYear() + "." + (this.state.startDate.getMonth()+1) + "." + this.state.startDate.getDate()).getTime() / 1000)}</p>
-                <span id="sp1"></span>
+                <div style={{float: "left", paddingBottom:"20px", width: "100px"}}>
+                    Date: 
+                    <DatePicker selected={this.state.startDate} onChange={this.handleChangeStart} />
+                {/* <p>{Math.round(new Date(this.state.startDate.getFullYear() + "." + (this.state.startDate.getMonth()+1) + "." + this.state.startDate.getDate()).getTime() / 1000)}</p>
+                <span id="sp1">{this.state.startDate.getFullYear()}-{this.state.startDate.getMonth()}-{this.state.startDate.getDay()}</span> */}
                 </div>
-                <div style={{float: "right", paddingLeft:"10px", width: "100px"}}>
-                    To:
-                    <DatePicker
-                    selected={this.state.endDate}
-                    onChange={this.handleChangeEnd}
-                />
-                <p>{Math.round(new Date(this.state.endDate.getFullYear() + "." + (this.state.endDate.getMonth() + 1) + "." + this.state.endDate.getDate()).getTime()/1000)}</p>
-                <span id="sp2"></span>
+
+                <div>
+                  <br></br>
+                      <select value={this.state.selectedSrc} onChange={e => {
+                        // console.log(this.state.selectedSrc);
+                          this.setState({
+                              selectedSrc: e.target.value,
+                            validationError:
+                              e.target.value === ""
+                                ? "You must select a symbol"
+                                : ""
+                          });
+                      }}>
+                        {this.state.quotes.map((val,index) => (<option key={index} value={val.key}>
+                                                              {val.key}
+                                                              :
+                                                              {val.value}
+                                                            </option>))}
+                      </select>
+                      <div style={{ color: "red", marginTop: "5px", height: "20px" }}>
+                        {this.state.validationError}
+                      </div>
+                </div>
+                <div>
+                      <select value={this.state.selectedDst} onChange={(e) => {
+                          this.setState({
+                              selectedDst: e.target.value,
+                              validationError:
+                              e.target.value === ""
+                                ? "You must select a symbol"
+                                : ""
+                          });
+                      }}>
+                        {this.state.quotes.map((val,index) => (<option key={index} value={val.key}>
+                                                              {val.key}
+                                                              :
+                                                              {val.value}
+                                                            </option>))}
+                      </select>
+                      <div style={{ color: "red", marginTop: "5px", height: "20px" }}>
+                        {this.state.validationError}
+                      </div>
+                </div>
+                {/* <label for="qty">Quantity:</label> */}
+                <input type="number" id="qty" name="qty" min="0"  style={{marginBottom: "20px"}}></input>
+                <button onClick={e => {
+                  // console.log(this.state.selectedSrc);
+                  // console.log(this.state.selectedDst);
+                  // console.log(document.getElementById("qty").value);
+                  var dt = this.state.startDate.getFullYear().toString() + "-" + this.state.startDate.getMonth().toString() + "-" + this.state.startDate.getDay().toString();
+                  axios({
+                    "method":"GET",
+                    "url":"https://currency-converter5.p.rapidapi.com/currency/historical/"+dt,
+                    "headers":{
+                    "content-type":"application/octet-stream",
+                    "x-rapidapi-host":"currency-converter5.p.rapidapi.com",
+                    "x-rapidapi-key":"a883fc58e6msh5ddecf03c777f85p16c295jsn47cb261e4668",
+                    "useQueryString":true
+                    },"params":{
+                    "format":"json",
+                    "from":this.state.selectedSrc,
+                    "to":this.state.selectedDst,
+                    "amount": document.getElementById("qty").value,
+                    }
+                    })
+                    .then((response)=>{
+                      // console.log(response);
+                      // console.log("===");
+                      // console.log(response.data.rates[this.state.selectedDst]['rate']);
+                      var el = document.getElementById("result");
+                      var tbl = document.createElement("table");
+                      var tb = document.createElement("tbody");
+                      var tr = document.createElement("tr");
+                      var td = document.createElement("td");
+                      var code = document.createTextNode("Currency Code: " + this.state.selectedDst);
+                      td.appendChild(code);
+                      tr.appendChild(td);
+                      tb.appendChild(tr);
+                      tbl.appendChild(tb);
+                      var rate = document.createTextNode("Rate: "+response.data.rates[this.state.selectedDst]['rate']);
+                      var tr1 = document.createElement("tr");
+                      var td1 = document.createElement("td");
+                      td1.appendChild(rate);
+                      tr1.appendChild(td1);
+                      tbl.appendChild(tr1);
+                      var rate_for_amount = document.createTextNode("Rate for Amount: " + response.data.rates[this.state.selectedDst]['rate_for_amount']);
+                      var tr2 = document.createElement("tr");
+                      var td2 = document.createElement("td");
+                      td2.appendChild(rate_for_amount);
+                      tr2.appendChild(td2);
+                      tbl.appendChild(tr2);
+                      el.appendChild(tbl);
+                    })
+                    .catch((error)=>{
+                      console.log(error)
+                    })
+
+                }} >Convert</button>
+                <div className="convertResult" id="result">
+
                 </div>
             </div>
-              </>
+          </div>
         );
     }
 }
