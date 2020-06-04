@@ -217,7 +217,7 @@ input {
 }
 hr {
   width: 100%;
-  /* border-top: 1px dotted black; */
+  border-top: 1px dotted black;
 }
 .even {
   background-color: rgb(230, 232, 230);

@@ -62,30 +62,4 @@ const Data = ({pa}) => {
     )
 }
 
-// const GetStockSymbols = () => {
-
-//     let content;
-
-//     const axios = require("axios");
-//     axios({
-//         "method":"GET",
-//         "url":"https://finnhub-realtime-stock-price.p.rapidapi.com/stock/symbol",
-//         "headers":{
-//         "content-type":"application/octet-stream",
-//         "x-rapidapi-host":"finnhub-realtime-stock-price.p.rapidapi.com",
-//         "x-rapidapi-key":process.env.REACT_APP_RAPIDAPI_KEY
-//         },"params":{
-//         "exchange":"US"
-//         }
-//         })
-//         .then((response)=>{
-//             content = response.data;
-//             console.log(content);
-//         })
-//         .catch((error)=>{
-//         console.log(error)
-//         })
-//     return content;
-// }
-
 export default Data
