@@ -165,9 +165,17 @@ class Homepage extends Component {
                                     tbl.classList.add("even");
                                   this.click_count++;
                                   var tb = document.createElement("tbody");
+                                  var tr0 = document.createElement("tr");
+                                  var td0 = document.createElement("td");
+                                  var code0 = document.createTextNode("To Currency Code: " + this.state.selectedSrc);
+                                  td0.appendChild(code0);
+                                  td0.classList.add("padding");
+                                  tr0.appendChild(td0);
+                                  tb.appendChild(tr0);
+                                  tbl.appendChild(tb);
                                   var tr = document.createElement("tr");
                                   var td = document.createElement("td");
-                                  var code = document.createTextNode("Currency Code: " + this.state.selectedDst);
+                                  var code = document.createTextNode("To Currency Code: " + this.state.selectedDst);
                                   td.appendChild(code);
                                   td.classList.add("padding");
                                   tr.appendChild(td);
