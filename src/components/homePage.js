@@ -167,7 +167,7 @@ class Homepage extends Component {
                                   var tb = document.createElement("tbody");
                                   var tr0 = document.createElement("tr");
                                   var td0 = document.createElement("td");
-                                  var code0 = document.createTextNode("To Currency Code: " + this.state.selectedSrc);
+                                  var code0 = document.createTextNode("From Currency Code: " + this.state.selectedSrc);
                                   td0.appendChild(code0);
                                   td0.classList.add("padding");
                                   tr0.appendChild(td0);
