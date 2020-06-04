@@ -31,11 +31,10 @@ const Data = ({pa}) => {
             })
    }, [dataId],[1])
     return (
-        <div style={{}}>
-            {/* <h2>Data View for {dataId.toString().toUpperCase()}</h2> */}
-            {quote && <div style={{paddingLeft: "30px"}}>
+        <div>
+            {quote && <div style={{paddingLeft: "0px"}}>
                 <table className="stocktable">
-                    <caption className="quoteTitle">Quote as of {new Date(Number(quote.t)*1000).toDateString()} for {dataId.toUpperCase()}</caption>
+                    <caption className="quoteTitle" style={{width: "800px"}}>Quote as of {new Date(Number(quote.t)*1000).toDateString()} for {dataId.toUpperCase()}</caption>
                     <thead>
                     <tr>
                         <th className="stockth">Current</th>

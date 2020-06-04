@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import CryptoSymbols from '../components/cryptoSymbols'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-// https://rapidapi.com/alphavantage/api/alpha-vantage?endpoint=apiendpoint_1811a37f-a9b3-4e77-97cc-1648ba1d19b0
 class Cryptocurrency extends Component {
     state = {
         sDate: new Date(),
@@ -17,26 +15,17 @@ class Cryptocurrency extends Component {
         this.setState({sDate: date})
         var from = Math.round(new Date(date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate()).getTime()/1000)
         this.from = from;
-        // var doc = document.getElementById("sp1");
-        // if(doc.innerHTML !== "")
-        //     doc.innerHTML = "";
-        // doc.appendChild(document.createTextNode(from));
     }
 
     handleChangeTo = date => {
         this.setState({eDate: date})
         var to = Math.round(new Date(date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate()).getTime()/1000)
         this.to = to;
-        // var doc = document.getElementById("sp2");
-        // if(doc.innerHTML !== "")
-        //     doc.innerHTML = "";
-        // doc.appendChild(document.createTextNode(to));
     }
 
     render() {
         return (
             <>
-
             <div  className="container-fluid">
                 <h1>Cryptocurrency</h1>
                 <p>
@@ -59,9 +48,7 @@ class Cryptocurrency extends Component {
                 <div style={{width:"50px"}}>                       
                     <CryptoSymbols from={this.from} to={this.to}/>
                 </div>
-
             </div>
-
             </>
         );
     }

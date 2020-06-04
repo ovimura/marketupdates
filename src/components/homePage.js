@@ -15,7 +15,7 @@ class Homepage extends Component {
         selectedDst: "",
         validationError: "",
       };
-      
+      click_count = 0;
       months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
       handleChangeStart = date => {
@@ -49,10 +49,8 @@ class Homepage extends Component {
           }
             })
             .then((response)=>{
-                // console.log(response.data);
                 var data = response.data.currencies;
                 var q = [];
-                // console.log(data);
                 for(let t in data) {
                   q.push(t);
                 }
@@ -62,10 +60,8 @@ class Homepage extends Component {
                 })
                 let qs = [];
                 m.forEach((v, k)=>{
-                  // console.log(k, v);
                     qs.push({key: k, value: v});
                 });
-                // console.log(qs);
                this.setState({
                    quotes: [
                        {key: "(Select a currency <code", value: "name>)"}
@@ -161,14 +157,19 @@ class Homepage extends Component {
                                 }
                                 })
                                 .then((response)=>{
-                                  // console.log(response);
                                   var el = document.getElementById("result");
                                   var tbl = document.createElement("table");
+                                  tbl.classList.add("wtbl");
+                                  console.log(this.click_count);
+                                  if(this.click_count%2 === 0)
+                                    tbl.classList.add("even");
+                                  this.click_count++;
                                   var tb = document.createElement("tbody");
                                   var tr = document.createElement("tr");
                                   var td = document.createElement("td");
                                   var code = document.createTextNode("Currency Code: " + this.state.selectedDst);
                                   td.appendChild(code);
+                                  td.classList.add("padding");
                                   tr.appendChild(td);
                                   tb.appendChild(tr);
                                   tbl.appendChild(tb);
@@ -176,12 +177,14 @@ class Homepage extends Component {
                                   var tr1 = document.createElement("tr");
                                   var td1 = document.createElement("td");
                                   td1.appendChild(rate);
+                                  td1.classList.add("padding");
                                   tr1.appendChild(td1);
                                   tbl.appendChild(tr1);
                                   var rate_for_amount = document.createTextNode("Rate for Amount: " + response.data.rates[this.state.selectedDst]['rate_for_amount']);
                                   var tr2 = document.createElement("tr");
                                   var td2 = document.createElement("td");
                                   td2.appendChild(rate_for_amount);
+                                  td2.classList.add("padding");
                                   tr2.appendChild(td2);
                                   tbl.appendChild(tr2);
                                   if(this.state.validationError !== "")

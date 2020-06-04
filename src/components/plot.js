@@ -108,9 +108,6 @@ componentDidMount() {
             "resolution":"D"
             }
             })
-            // .then((response)=>{
-            //   console.log(response);
-            // })
             .then(data => {
                 console.log('data in updated');
                 console.log(data);
@@ -118,38 +115,32 @@ componentDidMount() {
                 for(let i=0; i<data.data['c'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['c'][i]});
                 }
-                //console.log('data_c: '+dataFromApi);
                 this.setState({data_c: dataFromApi});
     
                 dataFromApi = [];
                 for(let i=0; i<data.data['h'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['h'][i]});
                 }
-                //console.log('data_h: '+dataFromApi);
                 this.setState({data_h: dataFromApi});
                 dataFromApi = [];
                 for(let i=0; i<data.data['l'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['l'][i]});
                 }
-                //console.log('data_l: '+dataFromApi);
                 this.setState({data_l: dataFromApi});
                 dataFromApi = [];
                 for(let i=0; i<data.data['o'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['o'][i]});
                 }
-                //console.log('data_o: '+dataFromApi);
                 this.setState({data_o: dataFromApi});
                 dataFromApi = [];
                 for(let i=0; i<data.data['t'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['t'][i]});
                 }
-                //console.log('data_t: '+dataFromApi);
                 this.setState({data_t: dataFromApi});
                 dataFromApi = [];
                 for(let i=0; i<data.data['v'].length; i++) {
                     dataFromApi.push({x:i, y:data.data['v'][i]});
                 }
-                //console.log('data_v: '+dataFromApi);
                 this.setState({data_v: dataFromApi});
             })
             .catch((error)=>{

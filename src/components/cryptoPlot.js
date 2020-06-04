@@ -20,7 +20,6 @@ class CryptoPlot extends Component {
     from = 0;
     to = 0;
     updated = false;
-
     componentDidMount() {
       var f = 0, t =0;
       if(this.props.from !== this.from && this.props.to !== this.to) {
@@ -93,25 +92,23 @@ class CryptoPlot extends Component {
 
               var marketCapsFromApi = [];
               for(let i=0; i<response.data['market_caps'].length; i++) {
-                // marketCapsFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
                 marketCapsFromApi.push({x:i, y:response.data['market_caps'][i][1]});
               }
               this.setState({market_caps: marketCapsFromApi});
               var pricesFromApi = [];
               for(let i=0; i<response.data['prices'].length; i++) {
-                //pricesFromApi.push({x:((response.data['prices'][i][0]/1000)|0), y:response.data['prices'][i][1]});
                 pricesFromApi.push({x:i, y:response.data['prices'][i][1]});
               }
               this.setState({prices: pricesFromApi});
               var totalValumesFromApi = [];
               for(let i=0; i<response.data['total_volumes'].length; i++) {
-                //totalValumesFromApi.push({x:((response.data['total_volumes'][i][0]/1000)|0), y:response.data['total_volumes'][i][1]});
                 totalValumesFromApi.push({x:i, y:response.data['total_volumes'][i][1]});
               }
               this.setState({total_volumes: totalValumesFromApi});
             })
             .catch((error)=>{
               console.log(error)
+              this.display = false;
             })
     }
 
@@ -143,28 +140,6 @@ class CryptoPlot extends Component {
                 }
                 })
                 .then((response) => {
-                  // var marketCapsFromApi = [];
-                  // for(let i=0; i<response.data['market_caps'].length; i++) {
-                  //   //marketCapsFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
-                  //   marketCapsFromApi.push({x:i, y:response.data['market_caps'][i][1]});
-                  // }
-                  // this.setState({market_caps: marketCapsFromApi});
-                  // var pricesFromApi = [];
-                  // console.log(response.data['prices'][response.data['prices'].length-1][0]);
-                  // console.log("========");
-    
-                  // for(let i=0; i<response.data['prices'].length; i++) {
-                  //   //pricesFromApi.push({x:((response.data['prices'][i][0]/1000)|0), y:response.data['prices'][i][1]});
-                  //   pricesFromApi.push({x:i, y:response.data['prices'][i][1]});
-                  // }
-                  // this.setState({prices: pricesFromApi});
-                  // var totalValumesFromApi = [];
-                  // for(let i=0; i<response.data['total_volumes'].length; i++) {
-                  //   //totalValumesFromApi.push({x:((response.data['total_volumes'][i][0]/1000)|0), y:response.data['total_volumes'][i][1]});
-                  //   totalValumesFromApi.push({x:i, y:response.data['total_volumes'][i][1]});
-                  // }
-                  // this.setState({total_volumes: totalValumesFromApi});
-                  // console.log(this.state.prices);
                   if(response.data['market_caps'].length > 0) {
                     this.market_caps_range = [];
                     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -216,19 +191,16 @@ class CryptoPlot extends Component {
 
                   var marketCapsFromApi = [];
                   for(let i=0; i<response.data['market_caps'].length; i++) {
-                    // marketCapsFromApi.push({x:((response.data['market_caps'][i][0]/1000)|0), y:response.data['market_caps'][i][1]});
                     marketCapsFromApi.push({x:i, y:response.data['market_caps'][i][1]});
                   }
                   this.setState({market_caps: marketCapsFromApi});
                   var pricesFromApi = [];
                   for(let i=0; i<response.data['prices'].length; i++) {
-                    //pricesFromApi.push({x:((response.data['prices'][i][0]/1000)|0), y:response.data['prices'][i][1]});
                     pricesFromApi.push({x:i, y:response.data['prices'][i][1]});
                   }
                   this.setState({prices: pricesFromApi});
                   var totalValumesFromApi = [];
                   for(let i=0; i<response.data['total_volumes'].length; i++) {
-                    //totalValumesFromApi.push({x:((response.data['total_volumes'][i][0]/1000)|0), y:response.data['total_volumes'][i][1]});
                     totalValumesFromApi.push({x:i, y:response.data['total_volumes'][i][1]});
                   }
                   this.setState({total_volumes: totalValumesFromApi});
