@@ -3,9 +3,7 @@ import axios from 'axios'
 import Data from '../components/data'
 import Plot from '../components/plot'
 import DatePicker from "react-datepicker";
-//import { render } from '@testing-library/react'
 
-//import { render } from '@testing-library/react'
 // Reference: https://alligator.io/react/axios-react/
 // https://www.carlrippon.com/react-drop-down-data-binding/
 class Symbols extends React.Component {
@@ -35,11 +33,8 @@ class Symbols extends React.Component {
             return response.data;
         })
             .then(data => {
-                // console.log(data);
                 this.dat = data;
-                // console.log(this.dat[0].description, this.dat[0].symbol);
-                let symbolsFromApi = data.map((symbol, index)=>{
-                  //console.log(symbol.description);
+                let symbolsFromApi = data.map((symbol, index) => {
                     return {key: index, value: symbol.symbol, display: symbol.displaySymbol, description: symbol.description}
                 });
                this.setState({
@@ -56,7 +51,6 @@ class Symbols extends React.Component {
 
     handleChangeFrom = date => {
           this.setState({sDate: date})
-          console.log(Number(this.state.sDate.valueOf().toString().substring(0,10)));
     }
 
     handleChangeTo = date => {
@@ -115,14 +109,14 @@ class Symbols extends React.Component {
                 </tr>
               </tbody>
             </table>
-            <Welcome name={this.state.selectedSymbol} from={Number(this.state.sDate.valueOf().toString().substring(0,10))} to={Number(this.state.eDate.valueOf().toString().substring(0,10))} />
+            <DisplayStocks name={this.state.selectedSymbol} from={Number(this.state.sDate.valueOf().toString().substring(0,10))} to={Number(this.state.eDate.valueOf().toString().substring(0,10))} />
           </div>
 
         );
     }
 }
 
-function Welcome(props) {
+function DisplayStocks(props) {
     if(props.name !== "") {
         return (
           <div style={{paddingLeft: "0px"}}>

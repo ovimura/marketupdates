@@ -160,7 +160,6 @@ class Homepage extends Component {
                                   var el = document.getElementById("result");
                                   var tbl = document.createElement("table");
                                   tbl.classList.add("wtbl");
-                                  console.log(this.click_count);
                                   if(this.click_count%2 === 0)
                                     tbl.classList.add("even");
                                   this.click_count++;

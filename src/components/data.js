@@ -4,7 +4,6 @@ import {useParams} from 'react-router-dom';
 
 const Data = ({pa}) => {
     let {dataId} = useParams();
-    console.log(pa);
     if(pa !== undefined && dataId === undefined)
         dataId = pa;
     if(dataId === undefined)
@@ -23,7 +22,6 @@ const Data = ({pa}) => {
             }
         })
             .then((response) => {
-                console.log(response);
                setQuote(response.data)
             })
             .catch((error) => {
