@@ -26,7 +26,7 @@ class Cryptocurrency extends Component {
     render() {
         return (
             <>
-            <div  className="container-fluid">
+            <div  className="container-fluid" role="main">
                 <h1>Cryptocurrency</h1>
                 <p>
                     Please select a Cryptocurrency from the following drop-down field:

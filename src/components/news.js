@@ -142,10 +142,10 @@ class News extends Component {
                         </figure> 
                             <hgroup>  
                                 <h2>{hl}</h2>  
-                                <h4><span style={{fontSize:"14px", float:"right", paddingRight: "10px", width:"100%", textAlign:"right", marginBottom:"2px"}}>{dt}</span></h4>
+                                <h3><span style={{fontSize:"14px", float:"right", paddingRight: "10px", width:"100%", textAlign:"right", marginBottom:"2px"}}>{dt}</span></h3>
                             </hgroup> 
                             <p>{summary}</p> 
-                            <span><a href={readMore} style={{color:"red"}}>Read More</a></span>
+                            <span><a href={readMore} style={{color:"red", fontWeight:"600", fontSize: "14px"}}>Read More</a></span>
                     </article>
                 </>)
     }
@@ -153,6 +153,7 @@ class News extends Component {
     render() {
             return (
                 <div  className="canv container-fluid">
+                    <div role="main">
                     <h1>News</h1>
                     <table className="lft">
                         <tbody>
@@ -163,7 +164,7 @@ class News extends Component {
                                         <tr className="trnews"><th className="thnews hsource">Source</th><th className="thnews headline">Headline</th><th className="thnews hdate">Date/Time</th></tr> 
                                     </thead>
                                 </table> 
-                                <article className="scroll">
+                                <article className="scroll" tabIndex="0">
                                     <table>
                                         <tbody>
                                             {this.renderNews()}
@@ -177,6 +178,7 @@ class News extends Component {
                         </tr>
                         </tbody>
                     </table>
+                    </div>
                                 <aside className="view">
                                     {this.renderNewsDetails()}
                                 </aside>

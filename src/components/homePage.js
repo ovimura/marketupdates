@@ -77,7 +77,7 @@ class Homepage extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid" role="main">
             <div>
                 <h1>Currency Converter</h1>
                 <p>

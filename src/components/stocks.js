@@ -7,7 +7,7 @@ class Stocks extends Component {
             dataId = 'AAPL';
         
         return (
-            <div  className="container-fluid">
+            <div  className="container-fluid" role="main">
                 <h1>Stock Markets</h1>
                 <p>
                 Please select a Stock Market symbol from the following drop-down field:
