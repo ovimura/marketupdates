@@ -4,6 +4,10 @@ Video tutorial reference: https://www.youtube.com/watch?v=nusgoj74a3Y
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Deployment urls: 
+* https://www.market-hub-45641.firebaseapp.com
+* https://market-hub-45641.web.app
+
 ## Available Scripts
 
 In the project directory, you can run:
