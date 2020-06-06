@@ -12,6 +12,7 @@ class About extends Component {
                 <div>
                     <p>Author: Ovidiu Mura</p>
                     <p>Email: mura@pdx.edu</p>
+                    <p>Repo: <a href="https://github.com/ovimura/marketupdates" className="aAbout">marketupdates</a></p>
                 </div>
                 <hr/>
                 <p>
