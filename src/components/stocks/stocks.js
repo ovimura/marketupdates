@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Symbols from '../components/symbols';
+import Symbols from './symbols';
 class Stocks extends Component {
     render() {
         let {dataId} = this.props.match.params;

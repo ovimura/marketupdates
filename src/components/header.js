@@ -12,20 +12,20 @@ class Header extends Component {
                 </div>
                 <nav>
                     <ul>
-                        <li className="firstmenu">
+                        {/* <li className="firstmenu">
                             <Link to="/">Converter</Link>
-                        </li>
-                        <li>
+                        </li> */}
+                        {/* <li>
                             <Link to="/Stocks">Stock</Link>
-                        </li>
+                        </li> */}
                         {/* <li>
                             <Link to="/Stocks/aapl">APPL Stock</Link>
                         </li> */}
                         <li>
-                            <Link to="/Crypto">Crypto</Link>
+                            <Link to="/">News</Link>
                         </li>
                         <li>
-                            <Link to="/News">News</Link>
+                            <Link to="/Crypto">Crypto</Link>
                         </li>
                         <li className="lastmenu">
                             <Link to="/About">About</Link>
