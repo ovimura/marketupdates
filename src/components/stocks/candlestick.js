@@ -67,6 +67,7 @@ export default function CandleStick() {
           showlegend: false,
           height: 650, // Adjust height if needed
         }}
+        config={{ displaylogo: false }}
       />
     </div>
   );
