@@ -29,8 +29,11 @@ class Header extends Component {
             <li>
               <Link to="/Crypto">Crypto</Link>
             </li>
-            <li className="lastmenu">
+            <li>
               <Link to="/About">About</Link>
+            </li>
+            <li className="lastmenu">
+              <Link to="/login">Login</Link>
             </li>
           </ul>
         </nav>

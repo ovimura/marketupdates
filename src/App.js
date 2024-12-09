@@ -14,6 +14,8 @@ import News from './components/news';
 import Stocks from './components/stocks/stocks';
 import Crypto from './components/crypto';
 import About from './components/about';
+import Login from './components/login';
+
 //import Data from './components/data';
 // import Plot from './components/plot';
 
@@ -30,6 +32,7 @@ function App() {
         <Route exact path="/Stocks" component={Stocks} />
         <Route exact path="/Crypto" component={Crypto} />
         <Route exact path="/About" component={About} />
+        <Route exact path="/login" component={Login} />
         {/* <Route path='/:dataId' component={Data}/> */}
         {/* <Plot/> */}
         <Footer />

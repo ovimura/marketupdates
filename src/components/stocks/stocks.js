@@ -9,7 +9,11 @@ class Stocks extends Component {
     if (dataId === undefined) dataId = 'AAPL';
 
     return (
-      <div className="container-fluid" role="main">
+      <div
+        className="container-fluid"
+        role="main"
+        style={{ paddingBottom: '300px', marginBottom: '300px' }}
+      >
         <h1>Stock Markets</h1>
         <p>
           Please select a Stock Market symbol from the following drop-down
