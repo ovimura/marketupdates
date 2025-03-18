@@ -2,10 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Deployment urls: 
-* https://market-hub-45641.firebaseapp.com
-* https://market-hub-45641.web.app
-
+Deployment url: 
+* https://market-hub.info
+  
 ## Available Scripts
 
 In the project directory, you can run:
